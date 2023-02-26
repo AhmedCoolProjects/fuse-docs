@@ -76,6 +76,15 @@ const config = {
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "docs-network-health",
+        path: "docs-network-health",
+        routeBasePath: "docs-network-health",
+        sidebarPath: require.resolve("./sidebars.js"),
+      },
+    ],
   ],
 
   stylesheets: [
@@ -128,6 +137,11 @@ const config = {
           to: "docs-misc/",
           position: "left",
           label: "MISC.",
+        },
+        {
+          to: "docs-network-health/",
+          position: "left",
+          label: "Network Health Dashboard",
         },
       ],
     },
