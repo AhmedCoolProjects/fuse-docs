@@ -34,27 +34,27 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "docs2",
-        path: "docs2",
-        routeBasePath: "docs2",
+        id: "docs-integration",
+        path: "docs-integration",
+        routeBasePath: "docs-integration",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "docs3",
-        path: "docs3",
-        routeBasePath: "docs3",
+        id: "docs-developers",
+        path: "docs-developers",
+        routeBasePath: "docs-developers",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "docs4",
-        path: "docs4",
-        routeBasePath: "docs4",
+        id: "docs-validators",
+        path: "docs-validators",
+        routeBasePath: "docs-validators",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
@@ -105,17 +105,17 @@ const config = {
           label: "UNDERSTANDING FUSE",
         },
         {
-          to: "docs2/intro",
+          to: "docs-integration/",
           position: "left",
           label: "INTEGRATING WITH FUSE",
         },
         {
-          to: "docs3/intro",
+          to: "docs-developers/",
           position: "left",
           label: "FOR DEVELOPERS",
         },
         {
-          to: "docs4/intro",
+          to: "docs-validators/",
           position: "left",
           label: "FOR VALIDATORS",
         },

@@ -1,8 +1,8 @@
 {
-  "label": "Get Started with Fuse",
+  "label": "Fuse Stack",
   "position": 1,
   "link": {
     "type": "generated-index",
-    "slug": "/intro"
+    "slug": "/"
   }
 }
