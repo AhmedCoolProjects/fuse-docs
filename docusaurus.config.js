@@ -99,7 +99,11 @@ const config = {
 
   themeConfig: {
     docs: { sidebar: { autoCollapseCategories: true } },
-
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       logo: {
         alt: "FUSE",
