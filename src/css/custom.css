@@ -36,7 +36,7 @@
   background: linear-gradient(60deg, #fff, #ebf1eb);
 }
 [data-theme="dark"] .navbar--fixed-top {
-  background: linear-gradient(30deg, #000402, #001b0e);
+  background: linear-gradient(30deg, #000402, #000402);
 }
 aside {
   background: transparent !important;
@@ -45,13 +45,13 @@ aside {
   background: linear-gradient(-30deg, #fff, #ebf1eb);
 }
 [data-theme="dark"] .footer {
-  background: linear-gradient(-30deg, #000402, #001b0e);
+  background: linear-gradient(-30deg, #000402, #000402);
 }
 .main-wrapper {
   background: radial-gradient(#ebf1eb, #fff) !important;
 }
 [data-theme="dark"] .main-wrapper {
-  background: radial-gradient(#00170c, #000402) !important;
+  background: radial-gradient(#000402, #000402) !important;
 }
 
 .theme-doc-markdown > ul > li > a {
