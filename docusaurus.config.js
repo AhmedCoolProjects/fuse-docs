@@ -132,46 +132,110 @@ const config = {
     footer: {
       style: "light",
       links: [
+        // {
+        //   title: "LINKS",
+        //   items: [
+        //     {
+        //       label: "Join Mailling List",
+        //       href: "https://cdn.forms-content.sg-form.com/d81bb4fc-c732-11e9-a6f6-de5802169549",
+        //     },
+        //     {
+        //       label: "GitHub",
+        //       href: "https://github.com/fuseio",
+        //     },
+        //     {
+        //       label: "Blog",
+        //       href: "https://news.fuse.io/",
+        //     },
+        //     {
+        //       label: "Twitter",
+        //       href: "https://twitter.com/fuse_network",
+        //     },
+        //     {
+        //       label: "LinkedIn",
+        //       href: "https://www.linkedin.com/company/fuseio/",
+        //     },
+        //     {
+        //       label: "YouTube",
+        //       href: "https://www.youtube.com/channel/UC7NaJ0UhmyHi5MvZSk61akA",
+        //     },
+        //     {
+        //       label: "Discord",
+        //       href: "https://discord.com/invite/jpPMeSZ",
+        //     },
+        //     {
+        //       label: "Telegram",
+        //       href: "https://t.me/fuseio",
+        //     },
+        //   ],
+        // },
         {
-          title: "LINKS",
+          title: "Getting Started",
+          items: [
+            { label: "Fuse Studio", to: "/" },
+            {
+              label: "Fuse Staking",
+              to: "/",
+            },
+            {
+              label: "Fuse Swap",
+              to: "/",
+            },
+            {
+              label: "Fuse Cash",
+              to: "/",
+            },
+          ],
+        },
+        {
+          title: "Under the hood",
           items: [
             {
-              label: "Join Mailling List",
-              href: "https://cdn.forms-content.sg-form.com/d81bb4fc-c732-11e9-a6f6-de5802169549",
+              label: "Fuse Network",
+              to: "/",
             },
             {
-              label: "GitHub",
-              href: "https://github.com/fuseio",
+              label: "Fuse Token",
+              to: "/",
             },
             {
-              label: "Blog",
-              href: "https://news.fuse.io/",
+              label: "Explorer",
+              to: "/",
             },
             {
-              label: "Twitter",
-              href: "https://twitter.com/fuse_network",
+              label: "Documentation",
+              to: "/",
             },
             {
-              label: "LinkedIn",
-              href: "https://www.linkedin.com/company/fuseio/",
+              label: "Service Status",
+              to: "/",
+            },
+          ],
+        },
+        {
+          title: "General",
+          items: [
+            {
+              label: "About Us",
+              to: "/",
             },
             {
-              label: "YouTube",
-              href: "https://www.youtube.com/channel/UC7NaJ0UhmyHi5MvZSk61akA",
+              label: "Privacy Policy",
+              to: "/",
             },
             {
-              label: "Discord",
-              href: "https://discord.com/invite/jpPMeSZ",
+              label: "Brand kit",
+              to: "/",
             },
             {
-              label: "Telegram",
-              href: "https://t.me/fuseio",
+              label: "Jobs",
+              to: "/",
             },
           ],
         },
       ],
 
-      copyright: `Copyright © ${new Date().getFullYear()} fuse.io`,
+      copyright: `© 2021 Fuse. All Rights Reserved`,
     },
     prism: {
       theme: lightCodeTheme,

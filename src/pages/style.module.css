@@ -15,35 +15,53 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 36px;
-  width: 70%;
-  margin-top: 12px;
+  width: 100%;
+  margin-top: 48px;
 }
 
 .card {
   width: 100%;
-  border: 0.5px solid grey;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 12px;
+  padding: 16px;
+}
+.card > div {
+  background-color: #f2f2f2;
+  width: 100%;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  height: 100%;
-  margin-top: 0;
-  transition: "margin-top" ease-in-out 0.5s;
-}
-
-.card:hover {
-  margin-top: -10px;
+  padding: 24px 0px;
+  justify-content: center;
 }
 
 .card img {
-  width: 100%;
-  object-fit: cover;
-  height: 160px;
+  height: 100px;
+  object-fit: contain;
+}
+.card img:nth-child(1) {
+  display: flex;
+}
+.card img:nth-child(2) {
+  display: none;
+}
+.card h2 {
+  margin-top: 12px;
+  margin-bottom: 14px;
 }
 .card p {
-  padding: 0px 12px;
+  width: 100%;
+}
+.card:hover {
+  box-shadow: 0px 8px 24px rgba(66, 74, 83, 0.12),
+    0px 1px 3px rgba(66, 74, 83, 0.12);
+}
+
+.card:hover > div > img:nth-child(1) {
+  display: none;
+}
+.card:hover > div > img:nth-child(2) {
+  display: flex;
 }
 
 @media screen and (max-width: 900px) {

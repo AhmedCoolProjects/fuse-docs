@@ -6,44 +6,52 @@ import styles from "./style.module.css";
 
 const data = [
   {
-    image: "img/fuse_basics.png",
+    image: "img/img1.svg",
+    imageHover: "img/img7.svg",
     title: "Fuse Basics",
     description:
-      "Get the essential information on the Fuse Network and how it works",
+      "Getting all thr essential information  on tje fuse network and how and ir works.",
     link: "/docs/Intro to Fuse/",
   },
   {
-    image: "img/developers.png",
+    image: "img/img2.svg",
+    imageHover: "img/img8.svg",
     title: "Developers",
     description:
-      "Info on how to build on Fuse, including API docs and code references",
-    link: "/docs-developers/FuseStack/Fuse Stack",
+      "Info on how to build on fuse, including API docs and code references.",
+    link: "/docs/Intro to Fuse/",
   },
   {
-    image: "img/tutorials.png",
+    image: "img/img3.svg",
+    imageHover: "img/img9.svg",
     title: "Tutorials",
     description:
-      "Step-by-step and guides on Fuse. Inc technical and non-technical turorials",
-    href: "https://youtube.com/playlist?list=PLz-FWdV8_wNbduRj30srN5J4dutcIc9iN",
+      "Step by step and guides on Fuse. Inc technical and non  technical tutorials.",
+    link: "/docs/Intro to Fuse/",
   },
   {
-    image: "img/integration.png",
+    image: "img/img4.svg",
+    imageHover: "img/img10.svg",
     title: "Integration",
-    description: "Your one-stop shop for plugging into Fuse",
-    link: "/docs-developers/FuseStack/Fuse Stack",
+    description:
+      "your one stop shop for plugging into Fuse, get everything you need for integration on one page.",
+    link: "/docs/Intro to Fuse/",
   },
   {
-    image: "img/mobile.png",
+    image: "img/img5.svg",
+    imageHover: "img/img11.svg",
     title: "Mobile",
-    description: "Read more about the Fuse open-source wallet stack",
-    // TODO: verify the link for Mibile card
-    link: "/",
+    description:
+      "Read more about the fuse open source wallet stack built for the best crypto experience on mobile. ",
+    link: "/docs/Intro to Fuse/",
   },
   {
-    image: "img/validators.png",
+    image: "img/img6.svg",
+    imageHover: "img/img12.svg",
     title: "Validators",
-    description: "Learn how staking works, and join as a validator",
-    link: "/docs-validators/HowToBecomeAValidator/How to become a validator",
+    description:
+      "See behind the scenes of Fuse, Learn how staking works and join as a validator.",
+    link: "/docs/Intro to Fuse/",
   },
 ];
 
@@ -65,17 +73,17 @@ export default function Home() {
           </p>
         </header>
 
-        {/* <div className={styles.grid}>
+        <div className={styles.grid}>
           {data.map((dataItem, index) => (
             <ItemCard key={index} {...dataItem} />
           ))}
-        </div> */}
+        </div>
       </main>
     </Layout>
   );
 }
 
-const ItemCard = ({ href, image, title, link, description }) => {
+const ItemCard = ({ href, image, imageHover, title, link, description }) => {
   return (
     <Link
       style={{
@@ -86,8 +94,11 @@ const ItemCard = ({ href, image, title, link, description }) => {
       href={href ? href : ""}
       to={link ? link : ""}>
       <div className={styles.card}>
-        <img src={image} alt={title} />
-        <h3>{title}</h3>
+        <div>
+          <img src={image} alt={title} />
+          <img src={imageHover} alt={title} />
+        </div>
+        <h2>{title}</h2>
         <p>{description}</p>
       </div>
     </Link>

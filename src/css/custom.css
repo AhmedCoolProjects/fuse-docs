@@ -40,9 +40,7 @@
 aside {
   background: transparent !important;
 }
-.footer {
-  background: linear-gradient(-30deg, #fff, #ebf1eb);
-}
+
 [data-theme="dark"] .footer {
   background: linear-gradient(-30deg, #000402, #000402);
 }
@@ -58,4 +56,12 @@ aside {
 }
 .theme-doc-markdown a {
   font-weight: 900 !important;
+}
+
+.footer__copyright {
+  text-align: left !important;
+}
+
+footer {
+  background: #fff !important;
 }
