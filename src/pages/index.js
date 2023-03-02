@@ -52,13 +52,24 @@ export default function Home() {
   return (
     <Layout title="WELCOME" description="">
       <main className={styles.container}>
-        {/* <img src="/logo.svg" alt="LOGO" /> */}
-        <h1>Learn How to Build with Fuse</h1>
-        <div className={styles.grid}>
+        <header>
+          <h1>
+            Learn How to Build
+            <br /> with Fuse
+          </h1>
+          <p>
+            Fuse strives to be the most business and consumer-friendly
+            blockchain ecosystem for the mainstream adoption of Web3 payments. A
+            fast and low-cost EVM-compatible Fuse Network blockchain powers
+            fuse.
+          </p>
+        </header>
+
+        {/* <div className={styles.grid}>
           {data.map((dataItem, index) => (
             <ItemCard key={index} {...dataItem} />
           ))}
-        </div>
+        </div> */}
       </main>
     </Layout>
   );

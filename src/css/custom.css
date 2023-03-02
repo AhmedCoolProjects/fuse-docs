@@ -18,14 +18,13 @@
   --ifm-color-primary-lightest: #f0fef2;
 }
 
-.navbar--fixed-top {
-  padding: 0px 16px !important;
-  border-bottom: 1px solid var(--ifm-toc-border-color);
-  height: 80px !important;
+.navbar {
+  box-shadow: none !important;
 }
-.navbar__logo img {
-  height: 45px;
-  object-fit: contain;
+
+.navbar--fixed-top {
+  border-bottom: none;
+  background: #fff !important;
 }
 
 .navbar__logo {
@@ -48,7 +47,7 @@ aside {
   background: linear-gradient(-30deg, #000402, #000402);
 }
 .main-wrapper {
-  background: radial-gradient(#ebf1eb, #fff) !important;
+  background: #fff !important;
 }
 [data-theme="dark"] .main-wrapper {
   background: radial-gradient(#000402, #000402) !important;

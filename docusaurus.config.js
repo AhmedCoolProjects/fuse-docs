@@ -108,44 +108,24 @@ const config = {
       logo: {
         alt: "FUSE",
         src: "logo_black.svg",
-        srcDark: "logo_white.svg",
+        width: 200,
       },
       items: [
         {
           type: "doc",
           docId: "Intro to Fuse/Intro to Fuse",
           position: "left",
-          label: "UNDERSTANDING FUSE",
-        },
-        {
-          to: "docs-integration/",
-          position: "left",
-          label: "INTEGRATING WITH FUSE",
+          label: "Basics",
         },
         {
           to: "docs-developers/",
           position: "left",
-          label: "FOR DEVELOPERS",
+          label: "Developers",
         },
         {
           to: "docs-validators/",
           position: "left",
-          label: "FOR VALIDATORS",
-        },
-        {
-          to: "docs-tools/",
-          position: "left",
-          label: "TOOLS",
-        },
-        {
-          to: "docs-misc/",
-          position: "left",
-          label: "MISC.",
-        },
-        {
-          to: "docs-network-health/",
-          position: "left",
-          label: "Network Health Dashboard",
+          label: "Validators",
         },
       ],
     },
