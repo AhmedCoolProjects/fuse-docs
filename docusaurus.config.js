@@ -100,8 +100,8 @@ const config = {
   themeConfig: {
     docs: { sidebar: { autoCollapseCategories: true } },
     colorMode: {
-      defaultMode: "dark",
-      disableSwitch: false,
+      defaultMode: "light",
+      disableSwitch: true,
       respectPrefersColorScheme: false,
     },
     navbar: {
