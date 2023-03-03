@@ -23,6 +23,7 @@
   width: 100%;
   border-radius: 12px;
   padding: 16px;
+  height: 100%;
 }
 .card > div {
   background-color: #f2f2f2;

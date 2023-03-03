@@ -1,48 +1,65 @@
 import React from "react";
 import clsx from "clsx";
 import styles from "./styles.module.css";
+import {
+  DiscordIcon,
+  GitHubIcon,
+  MediumIcon,
+  TelegramIcon,
+  TwitterIcon,
+} from "../../../icons";
+import Link from "@docusaurus/Link";
 
 export default function FooterLayout({ style, links, logo, copyright }) {
   const data = [
     {
       title: "Medium",
-      icon: "icons/medium.svg",
+      icon: <DiscordIcon />,
       link: "",
     },
     {
-      title: "GirHub",
-      icon: "icons/github.svg",
-      link: "",
+      title: "GitHub",
+      icon: <GitHubIcon />,
+      link: "https://github.com/fuseio",
     },
     {
       title: "Twitter",
-      icon: "icons/twitter.svg",
-      link: "",
+      icon: <TwitterIcon />,
+      link: "https://twitter.com/fuse_network",
     },
     {
       title: "Telegram",
-      icon: "icons/telegram.svg",
-      link: "",
+      icon: <TelegramIcon />,
+      link: "https://t.me/fuseio",
     },
     {
       title: "Discord",
-      icon: "icons/discord.svg",
-      link: "",
+      icon: <DiscordIcon />,
+      link: "https://discord.com/invite/jpPMeSZ",
     },
     {
       title: "Docs",
-      icon: "icons/medium.svg",
-      link: "",
+      icon: <MediumIcon />,
+      link: "https://docs.fuse.io/",
     },
   ];
   return (
     <>
       <div className={styles.social_container}>
         {data.map((item_, index) => (
-          <div className={styles.social_item} key={index}>
-            <img src={item_.icon} alt={item_.title} />
-            <span>{item_.title}</span>
-          </div>
+          <Link
+            style={{
+              textDecoration: "none",
+              color: "inherit",
+            }}
+            to={item_.link}
+            target="_blank"
+            key={index}>
+            <div className={styles.social_item}>
+              {item_.icon}
+              <span>{item_.title}</span>
+            </div>
+          </Link>
         ))}
       </div>
       <footer
