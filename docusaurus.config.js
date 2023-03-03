@@ -34,15 +34,6 @@ const config = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        id: "docs-integration",
-        path: "docs-integration",
-        routeBasePath: "docs-integration",
-        sidebarPath: require.resolve("./sidebars.js"),
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
         id: "docs-developers",
         path: "docs-developers",
         routeBasePath: "docs-developers",
@@ -55,33 +46,6 @@ const config = {
         id: "docs-validators",
         path: "docs-validators",
         routeBasePath: "docs-validators",
-        sidebarPath: require.resolve("./sidebars.js"),
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "docs-tools",
-        path: "docs-tools",
-        routeBasePath: "docs-tools",
-        sidebarPath: require.resolve("./sidebars.js"),
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "docs-misc",
-        path: "docs-misc",
-        routeBasePath: "docs-misc",
-        sidebarPath: require.resolve("./sidebars.js"),
-      },
-    ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "docs-network-health",
-        path: "docs-network-health",
-        routeBasePath: "docs-network-health",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
@@ -112,7 +76,7 @@ const config = {
       },
       items: [
         {
-          to: "/category/intro-to-fuse",
+          to: "docs/category/intro-to-fuse",
           position: "left",
           label: "Basics",
         },

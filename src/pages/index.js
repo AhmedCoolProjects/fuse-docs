@@ -11,7 +11,7 @@ const data = [
     title: "Fuse Basics",
     description:
       "Getting all thr essential information  on tje fuse network and how and ir works.",
-    link: "/docs/Intro to Fuse/",
+    link: "/docs/category/intro-to-fuse",
   },
   {
     image: "img/img2.svg",
