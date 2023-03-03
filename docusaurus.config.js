@@ -112,8 +112,7 @@ const config = {
       },
       items: [
         {
-          type: "doc",
-          docId: "Intro to Fuse/Intro to Fuse",
+          to: "/category/intro-to-fuse",
           position: "left",
           label: "Basics",
         },

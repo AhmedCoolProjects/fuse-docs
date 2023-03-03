@@ -1,8 +1,0 @@
-{
-  "label": "Fuse Token (FUSE)",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "The native token of the network is called FUSE and is used to pay gas fees, like ether on Ethereum."
-  }
-}
