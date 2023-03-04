@@ -6,14 +6,14 @@ Hardhat is a development environment for building, deploying, testing, and debug
 
 You may learn more about installing and using Hardhat by reading the official documentation.
 
-## Config Hardhat for Fuse Mainnet
+### Config Hardhat for Fuse Mainnet
 
-```ts title="hardhat.config.ts"
+```js title="/packages/hardhat-ts/hardhat.config.ts"
 // Update the default network to be fuse network
 const defaultNetwork = "fuse";
 ```
 
-```ts
+```js title="hardhat.config.js"
 // Update the RPC endpoints for Fuse Mainnet
 const config: HardhatUserConfig = {
   networks: {
@@ -38,18 +38,18 @@ const config: HardhatUserConfig = {
 };
 ```
 
-```ts
+```js title="hardhat.config.js"
 // Update the TNetworkInfo to be Fuse Network
 export const targetNetworkInfo: TNetworkInfo = NETWORKS.fuse;
 ```
 
-## Compile Your Smart Contract using Hardhat for Fuse Mainnet
+### Compile Your Smart Contract using Hardhat for Fuse Mainnet
 
 ```sh
 npx hardhat compile
 ```
 
-## Deploy Your Smart Contract using Hardhat for Fuse Mainnet
+### Deploy Your Smart Contract using Hardhat for Fuse Mainnet
 
 ```sh
 hardhat run --network gnosis scripts/deploy.js

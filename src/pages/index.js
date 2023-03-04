@@ -19,7 +19,7 @@ const data = [
     title: "Developers",
     description:
       "Info on how to build on fuse, including API docs and code references.",
-    link: "/docs/Intro to Fuse/",
+    link: "/docs-developers/Overview",
   },
   {
     image: "img/img3.svg",

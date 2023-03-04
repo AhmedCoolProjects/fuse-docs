@@ -7,8 +7,8 @@ sidebar_position: 1
 Getting your dApp live on Fuse is simple:
 
 - Replace the generic RPC address with a Fuse-specific one for targeted deployment.
-  ​​
-  Please see the RPC page for more details.
+
+Please see the RPC page for more details.
 
 - The network id must be updated.
 - Switch the Default Network to Fuse

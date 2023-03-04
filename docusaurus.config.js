@@ -81,7 +81,7 @@ const config = {
           label: "Basics",
         },
         {
-          to: "docs-developers/",
+          to: "docs-developers/Overview",
           position: "left",
           label: "Developers",
         },
