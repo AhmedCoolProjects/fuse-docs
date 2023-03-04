@@ -4,7 +4,7 @@ sidebar_position: 1
 
 Significant updates on the network level are introduced via forks.
 
-:::danger Attension
+:::danger
 Forks are used to introduce new functionality or fix security-related issues. Node runners will receive instructions on how and when to update their nodes in the event of a fork.
 :::
 

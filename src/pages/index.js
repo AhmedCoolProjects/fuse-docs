@@ -27,7 +27,7 @@ const data = [
     title: "Tutorials",
     description:
       "Step by step and guides on Fuse. Inc technical and non  technical tutorials.",
-    link: "/docs/Intro to Fuse/",
+    link: "/",
   },
   {
     image: "img/img4.svg",
@@ -35,7 +35,7 @@ const data = [
     title: "Integration",
     description:
       "your one stop shop for plugging into Fuse, get everything you need for integration on one page.",
-    link: "/docs/Intro to Fuse/",
+    link: "/",
   },
   {
     image: "img/img5.svg",
@@ -43,7 +43,7 @@ const data = [
     title: "Mobile",
     description:
       "Read more about the fuse open source wallet stack built for the best crypto experience on mobile. ",
-    link: "/docs/Intro to Fuse/",
+    link: "/",
   },
   {
     image: "img/img6.svg",
@@ -51,7 +51,7 @@ const data = [
     title: "Validators",
     description:
       "See behind the scenes of Fuse, Learn how staking works and join as a validator.",
-    link: "/docs/Intro to Fuse/",
+    link: "/docs-validators/",
   },
 ];
 
