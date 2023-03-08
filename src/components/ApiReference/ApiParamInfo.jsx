@@ -1,15 +1,9 @@
 import React from "react";
 import Markdown from "markdown-to-jsx";
-
-import { ApiParam } from "./ApiParamField";
-
 import styles from "./styles.module.css";
 
-interface ApiParamInfoProps {
-  param: ApiParam;
-}
 
-const ApiParamInfo = ({ param }: ApiParamInfoProps) => (
+const ApiParamInfo = ({ param }) => (
   <div className={styles.fieldInfo}>
     <div className={styles.paramTitle}>
       {param.name && <span className={styles.paramName}>{param.name}</span>}

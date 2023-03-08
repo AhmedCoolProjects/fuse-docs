@@ -1,17 +1,10 @@
 import React, { useState, useCallback } from "react";
 import clsx from "clsx";
 import TextareaAutosize from "react-textarea-autosize";
-
-import { FieldComponentProps } from "../ApiReference/ApiParamField";
 import ApiParamInputOverlay from "./ApiParamInputOverlay";
 import styles from "./styles.module.css";
 
-interface ApiParamBaseInputProps extends FieldComponentProps {
-  multiline?: boolean;
-  enum?: Array<string | boolean>;
-  valueToString?: (value: string | FieldComponentProps["param"]["example"]) => string;
-  stringToValue?: (value: string) => string | FieldComponentProps["param"]["example"];
-}
+
 
 const ApiParamBaseInput = ({
   multiline,
@@ -22,7 +15,7 @@ const ApiParamBaseInput = ({
   param,
   valueToString,
   stringToValue,
-}: ApiParamBaseInputProps) => {
+}) => {
   const [focused, setFocused] = useState(false);
   const inputClassName = clsx(styles.input, {
     [styles.invalid]: meta.touched && meta.error,

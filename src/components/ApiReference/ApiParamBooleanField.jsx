@@ -1,9 +1,8 @@
 import React from "react";
-import { FieldComponentProps } from "../ApiReference/ApiParamField";
 
 import ApiParamBaseInput from "./ApiParamBaseInput";
 
-const ApiParamBooleanField = (props: FieldComponentProps<"boolean">) => {
+const ApiParamBooleanField = (props) => {
   return <ApiParamBaseInput {...props} enum={[false, true]} />;
 };
 

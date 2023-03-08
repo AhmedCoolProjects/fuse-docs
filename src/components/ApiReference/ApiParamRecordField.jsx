@@ -2,11 +2,10 @@ import React from "react";
 import omit from "lodash/omit";
 
 import {
-  FieldComponentProps,
   apiParamInitialValue,
-} from "../ApiReference/ApiParamField";
-import ApiParamInfo from "../ApiReference/ApiParamInfo";
-import ApiParamField from "../ApiReference/ApiParamField";
+} from "./ApiParamField";
+import ApiParamInfo from "./ApiParamInfo";
+import ApiParamField from "./ApiParamField";
 
 import styles from "./styles.module.css";
 
@@ -14,7 +13,7 @@ const ApiParamRecordField = ({
   param,
   field,
   form,
-}: FieldComponentProps<"array">) => {
+}) => {
   return (
     <div className={styles.groupContainer}>
       {param.name && (

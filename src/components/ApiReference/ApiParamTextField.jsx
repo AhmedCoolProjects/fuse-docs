@@ -1,9 +1,8 @@
 import React from "react";
 
-import { FieldComponentProps } from "../ApiReference/ApiParamField";
 import ApiParamBaseInput from "./ApiParamBaseInput";
 
-const ApiParamTextField = (props: FieldComponentProps<"string">) => {
+const ApiParamTextField = (props) => {
   return <ApiParamBaseInput {...props} enum={props.param.enum} />;
 };
 

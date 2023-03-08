@@ -1,14 +1,13 @@
 import React from "react";
-import { FieldComponentProps } from "../ApiReference/ApiParamField";
-import ApiParamInfo from "../ApiReference/ApiParamInfo";
-import ApiParamField from "../ApiReference/ApiParamField";
+import ApiParamInfo from "./ApiParamInfo";
+import ApiParamField from "./ApiParamField";
 
 import styles from "./styles.module.css";
 
 const ApiParamObjectField = ({
   param,
   field,
-}: FieldComponentProps<"object">) => {
+}) => {
   return (
     <div className={styles.groupContainer}>
       {param.name && (

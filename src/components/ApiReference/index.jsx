@@ -3,51 +3,24 @@ import React, {
   useCallback,
   useMemo,
   useContext,
-  Component,
 } from "react";
 import ReactMarkdown from "react-markdown";
 import { Formik, Form } from "formik";
 import CodeBlock from "@theme/CodeBlock";
-import Head from "@docusaurus/Head";
 import qs from "qs";
 import styles from "./styles.module.css";
-
 import ApiResponseField, {
-  ApiResponse,
   buildResponse,
 } from "./ApiResponseField";
-import ApiParamField, { ApiParam, apiParamInitialValue } from "./ApiParamField";
+import ApiParamField, { apiParamInitialValue } from "./ApiParamField";
 import ApiParamButton from "./ApiParamButton";
 import ApiExamples, { stringifyJSON, filterOutEmpty } from "./ApiExamples";
 import { ApiReferenceTokenContext } from "./ApiReferenceToken";
-import makeMetaDescription from "@site/src/utils/makeMetaDescription";
 
-export interface CodeSample {
-  language: "node" | "csharp" | "python";
-  code: string;
-  name?: string;
-}
 
-export interface ApiReferenceProps {
-  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-  path: string;
-  description?: string;
-  pathParams?: ApiParam[];
-  queryParams?: ApiParam[];
-  bodyParam?: ApiParam;
-  responses: ApiResponse[];
-  apiHost: string;
-  codeSamples?: CodeSample[];
-  children?: Component;
-}
 
-export interface FormValues {
-  path: object;
-  query: object;
-  body: object;
-}
 
-const deepCompact = (value: unknown) => {
+const deepCompact = (value) => {
   if (Array.isArray(value)) {
     const array = value.map(deepCompact).filter((x) => x != null);
 
@@ -78,7 +51,7 @@ const ApiReference = ({
   apiHost,
   codeSamples,
   children,
-}: ApiReferenceProps) => {
+}) => {
   const [response, setResponse] = useState(null);
   const [loading, setLoading] = useState(false);
   const [responseIndex, setResponseIndex] = useState(0);
@@ -138,11 +111,11 @@ const ApiReference = ({
   );
 
   const initialValues = useMemo(() => {
-    const pathParam: ApiParam = pathParams && {
+    const pathParam = pathParams && {
       type: "object",
       fields: pathParams,
     };
-    const queryParam: ApiParam = queryParams && {
+    const queryParam = queryParams && {
       type: "object",
       fields: queryParams,
     };
@@ -159,17 +132,8 @@ const ApiReference = ({
   );
 
   return (
-    <>
-      <Head>
-        <meta
-          name="description"
-          content={makeMetaDescription({
-            description: description,
-            path: path,
-          })}
-        />
-      </Head>
-      <Formik<FormValues> initialValues={initialValues} onSubmit={execCallback}>
+   
+      <Formik initialValues={initialValues} onSubmit={execCallback}>
         <Form autoComplete="off" className={styles.form}>
           <div className="row row--no-gutters">
             <div className="col">
@@ -311,7 +275,7 @@ const ApiReference = ({
           </div>
         </Form>
       </Formik>
-    </>
+  
   );
 };
 

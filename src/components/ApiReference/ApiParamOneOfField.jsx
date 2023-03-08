@@ -4,26 +4,25 @@ import { isPlainObject } from "lodash";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
 import {
-  FieldComponentProps,
   apiParamInitialValue,
   buildParamPath,
-} from "../ApiReference/ApiParamField";
-import ApiParamInfo from "../ApiReference/ApiParamInfo";
-import ApiParamField from "../ApiReference/ApiParamField";
+} from "./ApiParamField";
+import ApiParamInfo from "./ApiParamInfo";
+import ApiParamField from "./ApiParamField";
 
 import styles from "./styles.module.css";
 
-const ApiParamOneOfField = ({ param, field }: FieldComponentProps<"oneOf">) => {
+const ApiParamOneOfField = ({ param, field }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const { setFieldValue } = useFormikContext();
   const selectOption = useCallback(
-    (index: number) => {
+    (index) => {
       setActiveIndex(index);
 
       const oldValues = apiParamInitialValue(param.options[activeIndex]);
       const newValues = apiParamInitialValue(param.options[index]);
 
-      const setFieldValues = (values: any, clear = false) => {
+      const setFieldValues = (values, clear = false) => {
         if (isPlainObject(values)) {
           if (Object.keys(values).length === 0) {
             setFieldValue(buildParamPath(field.name), undefined);

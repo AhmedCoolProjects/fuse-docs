@@ -1,5 +1,5 @@
 import React from "react";
-import { Field, FieldProps } from "formik";
+import { Field } from "formik";
 
 import ApiParamInfo from "./ApiParamInfo";
 import ApiParamTextField from "./ApiParamTextField";
@@ -13,37 +13,10 @@ import ApiParamOneOfField from "./ApiParamOneOfField";
 
 import styles from "./styles.module.css";
 
-interface ApiBaseParam<Type extends string, Value = never> {
-  name?: string;
-  displayName?: string;
-  description?: string;
-  required?: boolean;
-  type: Type;
-  example?: Value;
-}
 
-export type ApiParam =
-  | (ApiBaseParam<"string", string> & { enum?: string[] })
-  | ApiBaseParam<"number", number>
-  | ApiBaseParam<"boolean", boolean>
-  | ApiBaseParam<"json", string | object>
-  | (ApiBaseParam<"array"> & { field: ApiParam })
-  | (ApiBaseParam<"record"> & { field: ApiParam })
-  | (ApiBaseParam<"object"> & { fields: ApiParam[] })
-  | (ApiBaseParam<"oneOf"> & { options: ApiParam[] });
 
-export interface FieldComponentProps<
-  Type extends ApiParam["type"] = ApiParam["type"],
-  Param extends ApiParam = Extract<ApiParam, { type: Type }>,
-  Value extends ApiParam["example"] = Param["example"]
-> extends FieldProps<Type extends "array" ? unknown[] : Value> {
-  param: Param;
-}
 
-const apiParamComponents: Record<
-  ApiParam["type"],
-  React.ComponentType<FieldComponentProps<ApiParam["type"]>>
-> = {
+const apiParamComponents  = {
   string: ApiParamTextField,
   number: ApiParamNumberField,
   boolean: ApiParamBooleanField,
@@ -54,24 +27,21 @@ const apiParamComponents: Record<
   oneOf: ApiParamOneOfField,
 };
 
-export const PRIMITIVE_TYPES: ApiParam["type"][] = [
+export const PRIMITIVE_TYPES = [
   "string",
   "number",
   "boolean",
   "json",
 ];
 
-export const buildParamPath = (param: ApiParam | string, prefix?: string) =>
+export const buildParamPath = (param, prefix) =>
   [prefix, typeof param === "string" ? param : param.name]
     .filter((x) => x != null)
     .join(".") || null;
 
-interface ApiParamFieldProps {
-  prefix: string;
-  param: ApiParam;
-}
 
-export const apiParamInitialValue = (param: ApiParam) => {
+
+export const apiParamInitialValue = (param) => {
   if (param.type === "oneOf") {
     return {};
   }
@@ -97,7 +67,7 @@ export const apiParamInitialValue = (param: ApiParam) => {
   return value;
 };
 
-const validateField = (param: ApiParam) => (value: string) => {
+const validateField = (param) => (value) => {
   if (!PRIMITIVE_TYPES.includes(param.type)) return;
 
   if (param.type === "json" && value != null) {
@@ -109,11 +79,11 @@ const validateField = (param: ApiParam) => (value: string) => {
   }
 };
 
-const ApiParamField = ({ prefix, param }: ApiParamFieldProps) => {
+const ApiParamField = ({ prefix, param }) => {
   const Component = apiParamComponents[param.type];
   const field = (
     <Field name={buildParamPath(param, prefix)} validate={validateField(param)}>
-      {(props: FieldProps) => <Component {...props} param={param} />}
+      {(props) => <Component {...props} param={param} />}
     </Field>
   );
 

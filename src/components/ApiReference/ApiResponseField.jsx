@@ -1,17 +1,13 @@
 import React, { useState, useCallback } from "react";
 
-import { ApiParam, PRIMITIVE_TYPES } from "./ApiParamField";
+import {  PRIMITIVE_TYPES } from "./ApiParamField";
 import ApiParamInfo from "./ApiParamInfo";
 
 import styles from "./styles.module.css";
 
-export interface ApiResponse {
-  status: number;
-  description: string;
-  body?: ApiParam;
-}
 
-export const buildResponse = (field: ApiParam) => {
+
+export const buildResponse = (field) => {
   if (PRIMITIVE_TYPES.includes(field?.type)) {
     return field?.example;
   }
@@ -45,7 +41,7 @@ export const buildResponse = (field: ApiParam) => {
   return "";
 };
 
-const ApiResponseField = ({ field, collapsible }: { field: ApiParam; collapsible?: boolean }) => {
+const ApiResponseField = ({ field, collapsible }) => {
   const [collapsed, setCollapsed] = useState(!!collapsible);
   const [expandedIndex, setExpandedIndex] = useState(0);
 
@@ -77,7 +73,7 @@ const ApiResponseField = ({ field, collapsible }: { field: ApiParam; collapsible
               </button>
             ) : (
               <div className={styles.groupHeader}>
-                <ApiParamInfo param={{ ...field, type: "" as any }} />
+                <ApiParamInfo param={{ ...field, type: "" }} />
               </div>
             ))}
 

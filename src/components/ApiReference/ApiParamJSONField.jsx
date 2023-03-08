@@ -1,15 +1,13 @@
 import React, { useCallback } from "react";
 
-import { FieldComponentProps } from "../ApiReference/ApiParamField";
-
 import ApiParamBaseInput from "./ApiParamBaseInput";
 
-const ApiParamJSONField = (props: FieldComponentProps<"json">) => {
+const ApiParamJSONField = (props) => {
   const valueToString = useCallback(
-    (value: object | string) => (typeof value === "string" ? value : JSON.stringify(value)),
+    (value) => (typeof value === "string" ? value : JSON.stringify(value)),
     []
   );
-  const stringToValue = useCallback((value: string) => {
+  const stringToValue = useCallback((value) => {
     try {
       return JSON.parse(value);
     } catch {

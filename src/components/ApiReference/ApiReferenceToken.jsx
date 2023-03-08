@@ -4,19 +4,14 @@ import qs from "qs";
 const STORAGE_AUTH_KEY = "API_REFERENCE_AUTH_KEY";
 const STORAGE_SSO_AUTH_KEY = "API_REFERENCE_SSO_AUTH_KEY";
 
-interface ApiReferenceTokenContextProps {
-  ssoToken: string;
-  token: string;
-  setToken: (token: string) => void;
-}
 
-export const ApiReferenceTokenContext = React.createContext<ApiReferenceTokenContextProps>({
+export const ApiReferenceTokenContext = React.createContext({
   ssoToken: "",
   token: "",
   setToken: () => {},
 });
 
-export const ApiReferenceTokenProvider = (props: React.PropsWithChildren<{}>) => {
+export const ApiReferenceTokenProvider = (props) => {
   const [token, setToken] = useState("");
   const [ssoToken, setSsoToken] = useState("");
 

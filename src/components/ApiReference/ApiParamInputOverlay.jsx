@@ -1,12 +1,9 @@
 import React, { useCallback } from "react";
 
-import { FieldComponentProps } from "../ApiReference/ApiParamField";
-
 import styles from "./styles.module.css";
 
-interface ApiParamInputOverlayProps extends FieldComponentProps {}
 
-const ApiParamInputOverlay = ({ field, meta, form, param }: ApiParamInputOverlayProps) => {
+const ApiParamInputOverlay = ({ field, meta, form, param }) => {
   const error = meta.touched && meta.error;
   const exampleValue = param.example;
 

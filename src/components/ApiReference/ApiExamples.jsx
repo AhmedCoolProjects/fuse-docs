@@ -8,23 +8,21 @@ import { Path } from "path-parser";
 import CodeBlock from "@theme/CodeBlock";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-
-import { ApiReferenceProps, FormValues } from ".";
 import { ApiReferenceTokenContext } from "./ApiReferenceToken";
 
 const INDENT_LENGTH = 2;
 const STORAGE_EXAMPLE_TAB_KEY = "API_REFERENCE_EXAMPLE_TAB";
 
-const escapeChar = (str: string, char: string) =>
+const escapeChar = (str, char) =>
   str.replace(new RegExp(`(?:\\\\)?(${char})`, "g"), "\\$1");
 
-const buildTemplate = (lines: Array<string | null>) =>
+const buildTemplate = (lines) =>
   lines.filter((line) => line != null).join("\n");
 
-const line = (str: string, indent: number = 0) =>
+const line = (str, indent = 0) =>
   `${" ".repeat(indent * INDENT_LENGTH)}${str}`;
 
-export const stringifyJSON = (obj: object, pretty: boolean = false) =>
+export const stringifyJSON = (obj, pretty = false) =>
   JSON.stringify(obj, null, pretty ? INDENT_LENGTH : undefined);
 
 const tabs = [
@@ -200,7 +198,7 @@ const tabs = [
 ];
 
 // Used to filter out the fields that are empty in the example body JSON
-export const filterOutEmpty = (value: any) => {
+export const filterOutEmpty = (value) => {
   /**
    * This is temporary solution for fixing
    * Auth API adding additional `\` on special
@@ -235,8 +233,8 @@ const ApiExamples = ({
   apiHost,
   path,
   codeSamples,
-}: Pick<ApiReferenceProps, "method" | "apiHost" | "path" | "codeSamples">) => {
-  const { values } = useFormikContext<FormValues>();
+}) => {
+  const { values } = useFormikContext();
   const { token } = useContext(ApiReferenceTokenContext);
 
   const defaultPathParams = useMemo(
