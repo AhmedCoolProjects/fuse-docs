@@ -22,6 +22,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
+          
         },
         blog: false,
         theme: {
@@ -62,7 +63,7 @@ const config = {
   ],
 
   themeConfig: {
-    docs: { sidebar: { autoCollapseCategories: true } },
+    docs: { sidebar: { autoCollapseCategories: true, hideable: true } },
     colorMode: {
       defaultMode: "light",
       disableSwitch: true,

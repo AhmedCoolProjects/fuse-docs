@@ -1,24 +1,15 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useContext,
-} from "react";
+import React, { useState, useCallback, useMemo, useContext } from "react";
 import ReactMarkdown from "react-markdown";
 import { Formik, Form } from "formik";
 import CodeBlock from "@theme/CodeBlock";
 import qs from "qs";
 import styles from "./styles.module.css";
-import ApiResponseField, {
-  buildResponse,
-} from "./ApiResponseField";
+import ApiResponseField, { buildResponse } from "./ApiResponseField";
 import ApiParamField, { apiParamInitialValue } from "./ApiParamField";
 import ApiParamButton from "./ApiParamButton";
 import ApiExamples, { stringifyJSON, filterOutEmpty } from "./ApiExamples";
 import { ApiReferenceTokenContext } from "./ApiReferenceToken";
-
-
-
+import { InputKey } from "../APIComponent/APIRightPart";
 
 const deepCompact = (value) => {
   if (Array.isArray(value)) {
@@ -95,7 +86,7 @@ const ApiReference = ({
         );
 
         const fetchBody = await response.json();
-        
+
         const body = { status: response.status, body: fetchBody };
 
         setResponse(body);
@@ -132,24 +123,25 @@ const ApiReference = ({
   );
 
   return (
-   
-      <Formik initialValues={initialValues} onSubmit={execCallback}>
-        <Form autoComplete="off" className={styles.form}>
-          <div className="row row--no-gutters">
-            <div className="col">
-              <div className={styles.url}>
+    <Formik initialValues={initialValues} onSubmit={execCallback}>
+      <Form autoComplete="off" className={styles.form}>
+        <div className="row row--no-gutters">
+          <div className="col">
+            {/* API params: Method, host, path */}
+            {/* <div className={styles.url}>
                 <span className={styles.method}>{method}</span>
                 {apiHost}
                 {path}
-              </div>
+              </div> */}
 
-              {description && (
+            {/* Description for the api */}
+            {/* {description && (
                 <div className={styles.section}>
                   <ReactMarkdown>{description}</ReactMarkdown>
                 </div>
-              )}
-
-              {pathParams && pathParams.length > 0 && (
+              )} */}
+            {/* TODO: not used */}
+            {/* {pathParams && pathParams.length > 0 && (
                 <div className={styles.section}>
                   <div className={styles.sectionTitle}>PATH PARAMS</div>
 
@@ -160,9 +152,10 @@ const ApiReference = ({
                     />
                   </div>
                 </div>
-              )}
+              )} */}
 
-              {queryParams && queryParams.length > 0 && (
+            {/* Query Params */}
+            {/* {queryParams && queryParams.length > 0 && (
                 <div className={styles.section}>
                   <div className={styles.sectionTitle}>QUERY PARAMS</div>
 
@@ -173,9 +166,10 @@ const ApiReference = ({
                     />
                   </div>
                 </div>
-              )}
+              )} */}
 
-              {bodyParam && (
+            {/* Body Params */}
+            {/* {bodyParam && (
                 <div className={styles.section}>
                   <div className={styles.sectionTitle}>BODY PARAM</div>
 
@@ -183,9 +177,10 @@ const ApiReference = ({
                     <ApiParamField param={bodyParam} prefix="body" />
                   </div>
                 </div>
-              )}
+              )} */}
 
-              <div className={styles.section}>
+            {/* reponses args */}
+            {/* <div className={styles.section}>
                 <div className={styles.sectionTitle}>Responses</div>
 
                 {responses &&
@@ -203,36 +198,31 @@ const ApiReference = ({
                       </div>
                     </div>
                   ))}
-              </div>
-              <div className={styles.section}>{children}</div>
-            </div>
+              </div> */}
+            <div className={styles.section}>{children}</div>
+          </div>
 
-            <div className="col col--5">
-              <div className={styles.runner}>
-                <div className={styles.inlineForm}>
-                  <div className={styles.sectionTitle}>API KEY</div>
+          {/* RIGHT SIDEBAR */}
+          <div className="col col--5">
+            <div className={styles.runner}>
+              {/* API KEY INPUT */}
+              <InputKey
+                token={token}
+                onChangeToken={onChangeToken}
+                loading={loading}
+              />
 
-                  <input
-                    value={token}
-                    onChange={onChangeToken}
-                    placeholder="YOUR_API_KEY (Optional)"
-                    className={styles.input}
-                  />
-
-                  <ApiParamButton type="submit" disabled={loading}>
-                    Try It
-                  </ApiParamButton>
-                </div>
-
-                <ApiExamples
+              {/* LANGUAGES TABS FOR API REQUESTING */}
+              {/* <ApiExamples
                   method={method}
                   apiHost={apiHost}
                   path={path}
                   codeSamples={codeSamples}
-                />
+                /> */}
 
-                <div className={styles.section}>
-                  <div className={styles.inlineForm}>
+              <div className={styles.section}>
+                {/* RESPONSE EXAMPLE SELECTOR */}
+                {/* <div className={styles.inlineForm}>
                     <div className={styles.sectionTitle}>
                       Response {responseIndex !== -1 && "Example"}
                     </div>
@@ -253,9 +243,10 @@ const ApiReference = ({
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </div> */}
 
-                  <CodeBlock className="language-json">
+                {/* CODE BLOCK FOR RESPONSE EXAMPLE */}
+                {/* <CodeBlock className="language-json">
                     {responseIndex === -1
                       ? response
                         ? JSON.stringify(response.body, null, 2)
@@ -268,14 +259,13 @@ const ApiReference = ({
                           true
                         )
                       : "Empty"}
-                  </CodeBlock>
-                </div>
+                  </CodeBlock> */}
               </div>
             </div>
           </div>
-        </Form>
-      </Formik>
-  
+        </div>
+      </Form>
+    </Formik>
   );
 };
 
