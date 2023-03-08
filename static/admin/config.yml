@@ -1,0 +1,20 @@
+backend:
+  name: github
+  branch: cms
+  repo: AhmedCoolProjects/fuse-docs
+
+# These lines should *not* be indented
+media_folder: "static/img" # Media files will be stored in the repo under static/images/uploads
+public_folder: "/img/" # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+   - name: docs
+    label: Docs
+    folder: docs
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: title, label: Title }
+      - { name: subtitle, label: Subtitle }
+      - { name: description, label: Description, widget: markdown }
+      - { name: body, label: Body, widget: markdown }
