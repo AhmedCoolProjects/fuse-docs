@@ -4,8 +4,8 @@ sidebar_position: 20
 ---
 
 import APIComponent from "@site/src/components/APIComponent";
-import config from "../configs/api-reference/configs.json";
+import configNFT from "../configs/api-reference/nft.json";
 
 # Get Multiple NFTs
 
-<APIComponent {...config.nft.getMultipleNFTs} />
+<APIComponent {...configNFT.getMultipleNFTs} />

@@ -1,0 +1,55 @@
+{
+  "uploadFolder": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Upload folder to IPFS",
+    "description": "Upload multiple files to IPFS and place them in a folder directory.",
+    "method": "POST",
+    "path": "/ipfs/uploadFolder",
+    "pathParams": [],
+    "queryParams": [],
+    "bodyParam": {
+      "required": false,
+      "description": "Array of JSON and Base64 Supported",
+      "type": "array",
+      "field": {
+        "type": "object",
+        "fields": [
+          {
+            "name": "path",
+            "type": "string",
+            "description": "Path to the file",
+            "example": "moralis/logo.jpg"
+          },
+          {
+            "name": "content",
+            "type": "string",
+            "description": "Base64 or JSON",
+            "example": "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3"
+          }
+        ]
+      }
+    },
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns the path to the uploaded files"
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\n\ntry {\n    const abi = [\n        {\n        path: \"moralis/logo.jpg\",\n        content: \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3\",\n        },\n    ];\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.ipfs.uploadFolder({\n        abi\n    });\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> UploadFolder(IWeb3Api web3Api)\n{\n    bool result = true;\n     try\n    {\n        IpfsFileRequest req = new IpfsFileRequest()\n        {\n            Path = \"moralis/logo.jpg\",\n            Content = \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3\"\n        };\n         List<IpfsFileRequest> reqs = new List<IpfsFileRequest>();\n        reqs.Add(req);\n        List<IpfsFile> resp = await web3Api.Storage.UploadFolder(reqs);\n         result = resp is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nbody = [{\n    \"path\": \"moralis/logo.jpg\", \n    \"content\": \"iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAApgAAAKYB3X3\", \n}]\n\nresult = evm_api.ipfs.upload_folder(\n    api_key=api_key,\n    body=body,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}

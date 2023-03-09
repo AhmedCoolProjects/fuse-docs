@@ -1,0 +1,177 @@
+{
+  "runContractFunction": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Run contract function",
+    "description": "Run a given function of a contract ABI and retrieve readonly data. [Try it with Swagger](https://deep-index.moralis.io/api-docs-2.1/#/Utils/runContractFunction).",
+    "method": "POST",
+    "path": "/:address/function",
+    "pathParams": [
+      {
+        "name": "address",
+        "description": "The address of the contract",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "function_name",
+        "description": "The function name of the contract",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "bodyParam": {
+      "required": true,
+      "description": "Body",
+      "type": "object",
+      "fields": [
+        {
+          "name": "abi",
+          "type": "array",
+          "description": "The contract ABI",
+          "example": [],
+          "field": { "type": "json" }
+        },
+        {
+          "name": "params",
+          "type": "json",
+          "description": "The params for the given function",
+          "example": {}
+        }
+      ]
+    },
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns response of the function executed"
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const abi = []; // Add ABI\n\n    const functionName = 'balanceOf';\n\n    const address = '0x1234567890123456789012345678901234567890';\n\n    const chain = EvmChain.ETHEREUM;\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.utils.runContractFunction({\n        abi,\n        functionName,\n        address,\n        chain,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> RunContractFunction(IWeb3Api web3Api)\n{\n    bool result = true;\n    try\n    {\n        // Function ABI input parameters\n        object[] inputParams = new object[1];\n        inputParams[0] = new { internalType = \"uint256\", name = \"id\", type = \"uint256\" };\n        \n        // Function ABI Output parameters\n        object[] outputParams = new object[5];\n        outputParams[0] = new { internalType = \"uint256\", name = \"offerId\", type = \"uint256\" };\n        outputParams[1] = new { internalType = \"uint256\", name = \"id\", type = \"uint256\" };\n        outputParams[2] = new { internalType = \"address\", name = \"user\", type = \"address\" };\n        outputParams[3] = new { internalType = \"uint256\", name = \"price\", type = \"uint256\" };\n        outputParams[4] = new { internalType = \"bool\", name = \"fulfilled\", type = \"bool\" };\n        // Function ABI\n        object[] abi = new object[1];\n        abi[0] = new { inputs = inputParams, name = \"offers\", outputs = outputParams, stateMutability = \"view\", type = \"function\" };\n        // Define request object\n        RunContractDto rcd = new RunContractDto()\n        {\n            Abi = abi,\n            Params = new { id=\"1\" }\n        };\n        bob resp = await web3Api.Native.RunContractFunction<bob>(\"0x383cAe6B39ad82305242EFcfDa6EC5B2a52B4620\", \"offers\", rcd, ChainList.mumbai);\n        result = resp is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n    return result;\n}\n",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"address\": \"\", \n    \"function_name\": \"\", \n    \"chain\": \"eth\", \n}\nbody = {\n    \"abi\": [], \n    \"params\": {}, \n}\n\nresult = evm_api.utils.run_contract_function(\n    api_key=api_key,\n    params=params,\n    body=body,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "web3ApiVersion": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get API version",
+    "description": "Get the current version of the Moralis Web3 API.",
+    "method": "GET",
+    "path": "/web3/version",
+    "pathParams": [],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Get the current version of the Moralis Web3 API.",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "version",
+              "type": "string",
+              "description": "The version of the API",
+              "example": "1.0.0"
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\n\ntry {\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.utils.web3ApiVersion();\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetWeb3ApiVersion(IWeb3Api web3Api)\n{\n    bool result = true;\n     try\n    {\n        VersionResponse version = await web3Api.Info.GetWeb3ApiVersion();\n         result = version is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\n\nresult = evm_api.utils.web3_api_version(\n    api_key=api_key,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "endpointWeights": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get weights of endpoints",
+    "description": "Get the cost and rate limit for each API endpoint.",
+    "method": "GET",
+    "path": "/info/endpointWeights",
+    "pathParams": [],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "The cost and rate limit for each API endpoint."
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\n\n try {\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.utils.endpointWeights();\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetEndpointWeights(IWeb3Api web3Api)\n{\n    bool result = true;\n     try\n    {\n        List<EndpointWeights> weights = await web3Api.Info.GetEndpointWeights();\n         result = weights is { } && weights.Count > 0;\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\n\nresult = evm_api.utils.endpoint_weights(\n    api_key=api_key,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}

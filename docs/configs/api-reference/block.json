@@ -1,0 +1,541 @@
+{
+  "getBlock": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get block by hash",
+    "description": "Get the contents of a block given the block hash.",
+    "method": "GET",
+    "path": "/block/:block_number_or_hash",
+    "pathParams": [
+      {
+        "name": "block_number_or_hash",
+        "description": "The block number or block hash",
+        "required": true,
+        "example": "15863321",
+        "type": "string"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "include",
+        "description": "If the result should contain the internal transactions.",
+        "required": false,
+        "example": "internal_transactions",
+        "type": "string",
+        "enum": ["internal_transactions"]
+      }
+    ],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns the contents of a block",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "timestamp",
+              "type": "string",
+              "description": "The block timestamp",
+              "example": "2021-05-07T11:08:35.000Z"
+            },
+            {
+              "name": "number",
+              "type": "string",
+              "description": "The block number",
+              "example": 12386788
+            },
+            {
+              "name": "hash",
+              "type": "string",
+              "description": "The block hash",
+              "example": "0x9b559aef7ea858608c2e554246fe4a24287e7aeeb976848df2b9a2531f4b9171"
+            },
+            {
+              "name": "parent_hash",
+              "type": "string",
+              "description": "The block hash of the parent block",
+              "example": "0x011d1fc45839de975cc55d758943f9f1d204f80a90eb631f3bf064b80d53e045"
+            },
+            {
+              "name": "nonce",
+              "type": "string",
+              "description": "The nonce",
+              "example": "0xedeb2d8fd2b2bdec"
+            },
+            {
+              "name": "sha3_uncles",
+              "type": "string",
+              "example": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347"
+            },
+            {
+              "name": "logs_bloom",
+              "type": "string",
+              "example": "0xdde5fc46c5d8bcbd58207bc9f267bf43298e23791a326ff02661e99790da9996b3e0dd912c0b8202d389d282c56e4d11eb2dec4898a32b6b165f1f4cae6aa0079498eab50293f3b8defbf6af11bb75f0408a563ddfc26a3323d1ff5f9849e95d5f034d88a757ddea032c75c00708c9ff34d2207f997cc7d93fd1fa160a6bfaf62a54e31f9fe67ab95752106ba9d185bfdc9b6dc3e17427f844ee74e5c09b17b83ad6e8fc7360f5c7c3e4e1939e77a6374bee57d1fa6b2322b11ad56ad0398302de9b26d6fbfe414aa416bff141fad9d4af6aea19322e47595e342cd377403f417dfd396ab5f151095a5535f51cbc34a40ce9648927b7d1d72ab9daf253e31daf"
+            },
+            {
+              "name": "transactions_root",
+              "type": "string",
+              "example": "0xe4c7bf3aff7ad07f9e80d57f7189f0252592fee6321c2a9bd9b09b6ce0690d27"
+            },
+            {
+              "name": "state_root",
+              "type": "string",
+              "example": "0x49e3bfe7b618e27fde8fa08884803a8458b502c6534af69873a3cc926a7c724b"
+            },
+            {
+              "name": "receipts_root",
+              "type": "string",
+              "example": "0x7cf43d7e837284f036cf92c56973f5e27bdd253ca46168fa195a6b07fa719f23"
+            },
+            {
+              "name": "miner",
+              "type": "string",
+              "description": "The address of the miner",
+              "example": "0xea674fdde714fd979de3edf0f56aa9716b898ec8"
+            },
+            {
+              "name": "difficulty",
+              "type": "string",
+              "description": "The difficulty of the block",
+              "example": "7253857437305950"
+            },
+            {
+              "name": "total_difficulty",
+              "type": "string",
+              "description": "The total difficulty",
+              "example": "24325637817906576196890"
+            },
+            {
+              "name": "size",
+              "type": "string",
+              "description": "The block size",
+              "example": "61271"
+            },
+            {
+              "name": "extra_data",
+              "type": "string",
+              "example": "0x65746865726d696e652d6575726f70652d7765737433"
+            },
+            {
+              "name": "gas_limit",
+              "type": "string",
+              "description": "The gas limit",
+              "example": "14977947"
+            },
+            {
+              "name": "gas_used",
+              "type": "string",
+              "description": "The gas used",
+              "example": "14964688"
+            },
+            {
+              "name": "transaction_count",
+              "type": "string",
+              "description": "The number of transactions in the block",
+              "example": "252"
+            },
+            {
+              "name": "transactions",
+              "type": "object",
+              "description": "The transactions in the block",
+              "fields": [
+                {
+                  "name": "hash",
+                  "type": "string",
+                  "description": "The hash of the transaction",
+                  "example": "0x1ed85b3757a6d31d01a4d6677fc52fd3911d649a0af21fe5ca3f886b153773ed"
+                },
+                {
+                  "name": "nonce",
+                  "type": "string",
+                  "description": "The nonce",
+                  "example": "1848059"
+                },
+                {
+                  "name": "transaction_index",
+                  "type": "string",
+                  "example": "108"
+                },
+                {
+                  "name": "from_address",
+                  "type": "string",
+                  "description": "The from address",
+                  "example": "0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0"
+                },
+                {
+                  "name": "to_address",
+                  "type": "string",
+                  "description": "The to address",
+                  "example": "0x003dde3494f30d861d063232c6a8c04394b686ff"
+                },
+                {
+                  "name": "value",
+                  "type": "string",
+                  "description": "The value sent",
+                  "example": "115580000000000000"
+                },
+                { "name": "gas", "type": "string", "example": "30000" },
+                {
+                  "name": "gas_price",
+                  "type": "string",
+                  "description": "The gas price",
+                  "example": "52500000000"
+                },
+                { "name": "input", "type": "string", "example": "0x" },
+                {
+                  "name": "receipt_cumulative_gas_used",
+                  "type": "string",
+                  "example": "4923073"
+                },
+                {
+                  "name": "receipt_gas_used",
+                  "type": "string",
+                  "example": "21000"
+                },
+                {
+                  "name": "receipt_contract_address",
+                  "type": "string",
+                  "example": null
+                },
+                { "name": "receipt_root", "type": "string", "example": null },
+                {
+                  "name": "receipt_status",
+                  "type": "string",
+                  "example": "1"
+                },
+                {
+                  "name": "block_timestamp",
+                  "type": "string",
+                  "description": "The block timestamp",
+                  "example": "2021-05-07T11:08:35.000Z"
+                },
+                {
+                  "name": "block_number",
+                  "type": "string",
+                  "description": "The block number",
+                  "example": "12386788"
+                },
+                {
+                  "name": "block_hash",
+                  "type": "string",
+                  "description": "The hash of the block",
+                  "example": "0x9b559aef7ea858608c2e554246fe4a24287e7aeeb976848df2b9a2531f4b9171"
+                },
+                {
+                  "name": "logs",
+                  "type": "object",
+                  "description": "The logs of the transaction",
+                  "fields": [
+                    {
+                      "name": "log_index",
+                      "type": "string",
+                      "example": "273"
+                    },
+                    {
+                      "name": "transaction_hash",
+                      "type": "string",
+                      "description": "The hash of the transaction",
+                      "example": "0xdd9006489e46670e0e85d1fb88823099e7f596b08aeaac023e9da0851f26fdd5"
+                    },
+                    {
+                      "name": "transaction_index",
+                      "type": "string",
+                      "example": "204"
+                    },
+                    {
+                      "name": "address",
+                      "type": "string",
+                      "description": "The address of the contract",
+                      "example": "0x3105d328c66d8d55092358cf595d54608178e9b5"
+                    },
+                    {
+                      "name": "data",
+                      "type": "string",
+                      "description": "The data of the log",
+                      "example": "0x00000000000000000000000000000000000000000000000de05239bccd4d537400000000000000000000000000024dbc80a9f80e3d5fc0a0ee30e2693781a443"
+                    },
+                    {
+                      "name": "topic0",
+                      "type": "string",
+                      "example": "0x2caecd17d02f56fa897705dcc740da2d237c373f70686f4e0d9bd3bf0400ea7a"
+                    },
+                    {
+                      "name": "topic1",
+                      "type": "string",
+                      "example": "0x000000000000000000000000031002d15b0d0cd7c9129d6f644446368deae391"
+                    },
+                    {
+                      "name": "topic2",
+                      "type": "string",
+                      "example": "0x000000000000000000000000d25943be09f968ba740e0782a34e710100defae9"
+                    },
+                    { "name": "topic3", "type": "string", "example": null },
+                    {
+                      "name": "block_timestamp",
+                      "type": "string",
+                      "description": "The timestamp of the block",
+                      "example": "2021-05-07T11:08:35.000Z"
+                    },
+                    {
+                      "name": "block_number",
+                      "type": "string",
+                      "description": "The block number",
+                      "example": "12386788"
+                    },
+                    {
+                      "name": "block_hash",
+                      "type": "string",
+                      "description": "The hash of the block",
+                      "example": "0x9b559aef7ea858608c2e554246fe4a24287e7aeeb976848df2b9a2531f4b9171"
+                    }
+                  ]
+                },
+                {
+                  "name": "internal_transactions",
+                  "type": "object",
+                  "description": "The internal transactions of the transaction",
+                  "fields": [
+                    {
+                      "name": "transaction_hash",
+                      "type": "string",
+                      "description": "The hash of the transaction",
+                      "example": "0x057Ec652A4F150f7FF94f089A38008f49a0DF88e"
+                    },
+                    {
+                      "name": "block_number",
+                      "type": "string",
+                      "description": "The block number",
+                      "example": 12526958
+                    },
+                    {
+                      "name": "block_hash",
+                      "type": "string",
+                      "description": "The block hash",
+                      "example": "0x0372c302e3c52e8f2e15d155e2c545e6d802e479236564af052759253b20fd86"
+                    },
+                    {
+                      "name": "type",
+                      "type": "string",
+                      "description": "Call type",
+                      "example": "CALL"
+                    },
+                    {
+                      "name": "from",
+                      "type": "string",
+                      "description": "The sender",
+                      "example": "0xd4a3BebD824189481FC45363602b83C9c7e9cbDf"
+                    },
+                    {
+                      "name": "to",
+                      "type": "string",
+                      "description": "The recipient",
+                      "example": "0xa71db868318f0a0bae9411347cd4a6fa23d8d4ef"
+                    },
+                    {
+                      "name": "value",
+                      "type": "string",
+                      "description": "The value that was transfered (in wei)",
+                      "example": "650000000000000000"
+                    },
+                    {
+                      "name": "gas",
+                      "type": "string",
+                      "description": "The gas of the transaction",
+                      "example": "6721975"
+                    },
+                    {
+                      "name": "gas_used",
+                      "type": "string",
+                      "description": "The used gas",
+                      "example": "6721975"
+                    },
+                    {
+                      "name": "input",
+                      "type": "string",
+                      "description": "The input",
+                      "example": "0x"
+                    },
+                    {
+                      "name": "output",
+                      "type": "string",
+                      "description": "The output",
+                      "example": "0x"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const chain = EvmChain.ETHEREUM;\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.block.getBlock({\n        chain,\n        blockNumberOrHash,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetBlock(IWeb3Api web3Api)\n{\n    bool result = true;\n    try\n    {\n        Block block = await web3Api.Native.GetBlock(\"500000\", ChainList.eth);\n        result = block is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n    return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"block_number_or_hash\": \"15863321\", \n    \"chain\": \"eth\", \n}\n\nresult = evm_api.block.get_block(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getDateToBlock": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get block by date",
+    "description": "Get the closest block given the date.",
+    "method": "GET",
+    "path": "/dateToBlock",
+    "pathParams": [],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "date",
+        "description": "Unix date in milliseconds or a datestring (any format that is accepted by momentjs)",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns the block number and corresponding date and timestamp",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "date",
+              "type": "string",
+              "description": "The date of the block",
+              "example": "2020-01-01T00:00:00+00:00"
+            },
+            {
+              "name": "block",
+              "type": "number",
+              "description": "The block number",
+              "example": 9193266
+            },
+            {
+              "name": "timestamp",
+              "type": "number",
+              "description": "The timestamp of the block",
+              "example": 1577836811
+            },
+            {
+              "name": "block_timestamp",
+              "type": "string",
+              "description": "The timestamp of the block",
+              "example": "2019-12-31T23:59:45.000Z"
+            },
+            {
+              "name": "hash",
+              "type": "string",
+              "description": "The block hash",
+              "example": "0x9b559aef7ea858608c2e554246fe4a24287e7aeeb976848df2b9a2531f4b9171"
+            },
+            {
+              "name": "parent_hash",
+              "type": "string",
+              "description": "The block hash of the parent block",
+              "example": "0x011d1fc45839de975cc55d758943f9f1d204f80a90eb631f3bf064b80d53e045"
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const chain = EvmChain.ETHEREUM;\n\n    // unix date\n    cons date = '123..'\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.block.getDateToBlock({\n        date,\n        chain,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetDateToBlock(IWeb3Api web3Api)\n{\n    bool result = true;\n    try\n    {\n        long unixTicks = ConvertDatetimeToUnixTimeStamp(DateTime.Now.AddDays(-1));\n    // Fails due to schema def:\n    // date * number\n    //            example: 2020 - 01 - 01T00: 00:00 + 00:00\n    //The date of the block\n        BlockDate blockDate = await web3Api.Native.GetDateToBlock(unixTicks.ToString(), ChainList.eth);\n        result = blockDate is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n    return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"date\": \"\", \n    \"chain\": \"eth\", \n}\n\nresult = evm_api.block.get_date_to_block(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}

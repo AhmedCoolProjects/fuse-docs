@@ -1,0 +1,356 @@
+{
+  "balance": {
+    "apiHost": "https://solana-gateway.moralis.io",
+    "summary": "Get native balance by wallet",
+    "description": "Gets the native balance owned by a given network and address.",
+    "method": "GET",
+    "path": "/account/:network/:address/balance",
+    "pathParams": [
+      {
+        "name": "network",
+        "description": "The network to query",
+        "required": true,
+        "type": "string",
+        "enum": ["mainnet", "devnet"],
+        "example": "mainnet"
+      },
+      {
+        "name": "address",
+        "description": "The address for which the native balance will be checked",
+        "required": true,
+        "type": "string",
+        "example": "EJpLyTeE8XHG9CeREeHd6pr6hNhaRnTRJx4Z5DPhEJJ6"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "",
+        "body": {
+          "type": "object",
+          "fields": [
+            { "name": "solana", "type": "string" },
+            { "name": "lamports", "type": "string" }
+          ]
+        }
+      },
+      { "status": "400", "description": "" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis from 'moralis';\nimport { SolNetwork, SolAddress } from \"@moralisweb3/sol-utils\";\n\ntry {\n  await Moralis.start({\n    apiKey: 'YOUR_API_KEY',\n  });\n\n  const address = SolAddress.create(\n    \"HsXZnF7Te7dZ5ijvGcDj3NWtxRBBaAuYQgh1oZLwAba2\"\n  );\n\n  const network = SolNetwork.MAINNET;\n\n  const response = await Moralis.SolApi.account.getBalance({\n    network,\n    address,\n  });\n\n  console.log(response?.result);\n} catch (e) {\n  console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import sol_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"network\": \"\", \n    \"address\": \"\", \n}\n\nresult = sol_api.account.balance(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getSPL": {
+    "apiHost": "https://solana-gateway.moralis.io",
+    "summary": "Get token balance by wallet",
+    "description": "Gets the token balances owned by a given network and address.",
+    "method": "GET",
+    "path": "/account/:network/:address/tokens",
+    "pathParams": [
+      {
+        "name": "network",
+        "description": "The network to query",
+        "required": true,
+        "type": "string",
+        "enum": ["mainnet", "devnet"],
+        "example": "mainnet"
+      },
+      {
+        "name": "address",
+        "description": "The address for which token balances will be checked",
+        "required": true,
+        "type": "string",
+        "example": "EJpLyTeE8XHG9CeREeHd6pr6hNhaRnTRJx4Z5DPhEJJ6"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      { "status": "200", "description": "" },
+      { "status": "400", "description": "" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis from 'moralis';\nimport { SolNetwork, SolAddress } from \"@moralisweb3/sol-utils\";\n\ntry {\n  await Moralis.start({\n    apiKey: 'YOUR_API_KEY',\n  });\n\n  const address = SolAddress.create(\n    \"HsXZnF7Te7dZ5ijvGcDj3NWtxRBBaAuYQgh1oZLwAba2\"\n  );\n\n  const network = SolNetwork.MAINNET;\n\n  const response = await Moralis.SolApi.account.getSPL({\n    network,\n    address,\n  });\n\n  console.log(response?.result);\n} catch (e) {\n  console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import sol_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"network\": \"\", \n    \"address\": \"\", \n}\n\nresult = sol_api.account.get_spl(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getNFTs": {
+    "apiHost": "https://solana-gateway.moralis.io",
+    "summary": "Get NFTs by wallet",
+    "description": "Gets NFTs owned by a given network and address.",
+    "method": "GET",
+    "path": "/account/:network/:address/nft",
+    "pathParams": [
+      {
+        "name": "network",
+        "description": "The network to query",
+        "required": true,
+        "type": "string",
+        "enum": ["mainnet", "devnet"],
+        "example": "mainnet"
+      },
+      {
+        "name": "address",
+        "description": "The address of the contract",
+        "required": true,
+        "type": "string",
+        "example": "EJpLyTeE8XHG9CeREeHd6pr6hNhaRnTRJx4Z5DPhEJJ6"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      { "status": "200", "description": "" },
+      { "status": "400", "description": "" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis from 'moralis';\nimport { SolNetwork, SolAddress } from \"@moralisweb3/sol-utils\";\n\ntry {\n  await Moralis.start({\n    apiKey: 'YOUR_API_KEY',\n  });\n\n  const address = SolAddress.create(\n    \"HsXZnF7Te7dZ5ijvGcDj3NWtxRBBaAuYQgh1oZLwAba2\"\n  );\n\n  const network = SolNetwork.MAINNET;\n\n  const response = await Moralis.SolApi.account.getNFTs({\n    address,\n    network,\n  });\n\n  console.log(response?.result);\n} catch (e) {\n  console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import sol_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"network\": \"\", \n    \"address\": \"\", \n}\n\nresult = sol_api.account.get_nfts(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getPortfolio": {
+    "apiHost": "https://solana-gateway.moralis.io",
+    "summary": "Gets portfolio by wallet",
+    "description": "Gets the portfolio for a given network and address.",
+    "method": "GET",
+    "path": "/account/:network/:address/portfolio",
+    "pathParams": [
+      {
+        "name": "network",
+        "description": "The network to query",
+        "required": true,
+        "type": "string",
+        "enum": ["mainnet", "devnet"],
+        "example": "mainnet"
+      },
+      {
+        "name": "address",
+        "description": "The address of the token contract",
+        "required": true,
+        "type": "string",
+        "example": "EJpLyTeE8XHG9CeREeHd6pr6hNhaRnTRJx4Z5DPhEJJ6"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "nativeBalance",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "solana",
+                  "type": "string",
+                  "required": true
+                },
+                { "name": "lamports", "type": "string", "required": true }
+              ]
+            },
+            {
+              "name": "nfts",
+              "type": "object",
+              "fields": [
+                { "name": "associatedTokenAddress", "type": "string" },
+                { "name": "mint", "type": "string" },
+                { "name": "name", "type": "string" },
+                { "name": "symbol", "type": "string" }
+              ]
+            },
+            {
+              "name": "tokens",
+              "type": "object",
+              "fields": [
+                { "name": "associatedTokenAddress", "type": "string" },
+                { "name": "mint", "type": "string" },
+                { "name": "name", "type": "string" },
+                { "name": "symbol", "type": "string" },
+                { "name": "amount", "type": "string" },
+                { "name": "amountRaw", "type": "string" },
+                { "name": "decimals", "type": "number" }
+              ]
+            }
+          ]
+        }
+      },
+      { "status": "400", "description": "" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis from 'moralis';\nimport { SolNetwork, SolAddress } from \"@moralisweb3/sol-utils\";\n\ntry {\n  await Moralis.start({\n    apiKey: 'YOUR_API_KEY',\n  });\n\n  const address = SolAddress.create(\n    \"HsXZnF7Te7dZ5ijvGcDj3NWtxRBBaAuYQgh1oZLwAba2\"\n  );\n\n  const network = SolNetwork.MAINNET;\n\n  const response = await Moralis.SolApi.account.getPortfolio({\n    network,\n    address,\n  });\n\n  console.log(response?.result);\n} catch (e) {\n  console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import sol_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"network\": \"\", \n    \"address\": \"\", \n}\n\nresult = sol_api.account.get_portfolio(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getNFTMetadata": {
+    "apiHost": "https://solana-gateway.moralis.io",
+    "summary": "Get NFT metadata",
+    "description": "Get the global NFT metadata for a given network and contract (mint, standard, name, symbol, metaplex).",
+    "method": "GET",
+    "path": "/nft/:network/:address/metadata",
+    "pathParams": [
+      {
+        "name": "network",
+        "description": "The network to query",
+        "required": true,
+        "type": "string",
+        "enum": ["mainnet", "devnet"],
+        "example": "mainnet"
+      },
+      {
+        "name": "address",
+        "description": "The address of the contract",
+        "required": true,
+        "type": "string",
+        "example": "DDy5QHKEDgg5ZyWmwi1rJKwYHe7ZR5udGQfJkc8EPfLM"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "",
+        "body": {
+          "type": "object",
+          "fields": [
+            { "name": "mint", "type": "string" },
+            { "name": "standard", "type": "string" },
+            { "name": "name", "type": "string" },
+            { "name": "symbol", "type": "string" },
+            {
+              "name": "metaplex",
+              "type": "object",
+              "fields": [
+                { "name": "metadataUri", "type": "string", "required": true },
+                {
+                  "name": "masterEdition",
+                  "type": "boolean",
+                  "required": true
+                },
+                { "name": "isMutable", "type": "boolean", "required": true },
+                {
+                  "name": "primarySaleHappened",
+                  "type": "boolean",
+                  "required": true
+                },
+                {
+                  "name": "sellerFeeBasisPoints",
+                  "type": "number",
+                  "required": true
+                },
+                {
+                  "name": "updateAuthority",
+                  "type": "string",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      },
+      { "status": "400", "description": "" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis from 'moralis';\nimport { SolNetwork, SolAddress } from \"@moralisweb3/sol-utils\";\n\ntry {\n  await Moralis.start({\n    apiKey: 'YOUR_API_KEY',\n  });\n\n  const address = SolAddress.create(\n    \"FVW9KoJxXzP2cCfhLfFC7hQKBZKnaoPkyZJQgvM9moWV\"\n  );\n\n  const network = SolNetwork.MAINNET;\n\n  const response = await Moralis.SolApi.nft.getNFTMetadata({\n    address,\n    network,\n  });\n\n  console.log(response?.result);\n} catch (e) {\n  console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import sol_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"network\": \"\", \n    \"address\": \"\", \n}\n\nresult = sol_api.nft.get_nft_metadata(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getTokenPrice": {
+    "apiHost": "https://solana-gateway.moralis.io",
+    "summary": "Get token price",
+    "description": "Gets the token price (usd and native) for a given contract address and network. Currently, this API only support fetching token price listed on [Raydium DEX](https://raydium.io/).",
+    "method": "GET",
+    "path": "/token/:network/:address/price",
+    "pathParams": [
+      {
+        "name": "network",
+        "description": "The network to query",
+        "required": true,
+        "type": "string",
+        "enum": ["mainnet", "devnet"],
+        "example": "mainnet"
+      },
+      {
+        "name": "address",
+        "description": "The address of the token contract",
+        "required": true,
+        "type": "string",
+        "example": "SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "nativePrice",
+              "type": "object",
+              "fields": [
+                { "name": "value", "type": "string", "required": true },
+                { "name": "decimals", "type": "number", "required": true },
+                { "name": "name", "type": "string", "required": true },
+                { "name": "symbol", "type": "string", "required": true }
+              ]
+            },
+            { "name": "usdPrice", "type": "number" },
+            { "name": "exchangeAddress", "type": "string" },
+            { "name": "exchangeName", "type": "string" }
+          ]
+        }
+      },
+      { "status": "400", "description": "" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis from 'moralis';\nimport { SolNetwork, SolAddress } from \"@moralisweb3/sol-utils\";\n\ntry {\n  await Moralis.start({\n    apiKey: 'YOUR_API_KEY',\n  });\n\n  const address = SolAddress.create(\n    \"SRMuApVNdxXokk5GT7XD5cUUgXMBCoAz2LHeuAoKWRt\"\n  );\n\n  const network = SolNetwork.MAINNET;\n\n  const response = await Moralis.SolApi.token.getTokenPrice({\n    address,\n    network,\n  });\n\n  console.log(response?.result);\n} catch (e) {\n  console.error(e);\n}\n",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import sol_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"network\": \"\", \n    \"address\": \"\", \n}\n\nresult = sol_api.token.get_token_price(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}

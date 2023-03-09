@@ -1,0 +1,209 @@
+{
+  "getPairReserves": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get DEX token pair reserves",
+    "description": "Get the liquidity reserves for a given pair address. Only Uniswap V2 based exchanges supported at the moment.",
+    "method": "GET",
+    "path": "/:pair_address/reserves",
+    "pathParams": [
+      {
+        "name": "pair_address",
+        "description": "The liquidity pair address",
+        "required": true,
+        "example": "0xa2107fa5b38d9bbd2c461d6edf11b11a50f6b974",
+        "type": "string"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "to_block",
+        "description": "The block number to get the reserves from",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to_date",
+        "description": "Get the reserves up to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
+        "type": "string"
+      }
+    ],
+    "responses": [
+      { "status": "200", "description": "Returns the pair reserves" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const chain = EvmChain.ETHEREUM;\n\n    // Pair Token address\n    const pairAddress = '0x1234567890123456789012345678901234567890';\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.defi.getPairReserves({\n        pairAddress,\n        chain,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetPairReserves(IWeb3Api web3Api)\n{\n    bool result = true;\n     try\n    {\n        ReservesCollection balance = await web3Api.Defi.GetPairReserves(\"0xa2107fa5b38d9bbd2c461d6edf11b11a50f6b974\", ChainList.eth);\n         result = balance is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"pair_address\": \"0xa2107fa5b38d9bbd2c461d6edf11b11a50f6b974\", \n    \"chain\": \"eth\", \n    \"to_block\": \"\", \n    \"to_date\": \"\", \n}\n\nresult = evm_api.defi.get_pair_reserves(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getPairAddress": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get DEX token pair address",
+    "description": "Fetch the pair data of the provided token0+token1 combination.\nThe token0 and token1 options are interchangable (ie. there is no different outcome in \"token0=WETH and token1=USDT\" or \"token0=USDT and token1=WETH\")\n",
+    "method": "GET",
+    "path": "/:token0_address/:token1_address/pairAddress",
+    "pathParams": [
+      {
+        "name": "token0_address",
+        "description": "The token0 address",
+        "required": true,
+        "example": "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39",
+        "type": "string"
+      },
+      {
+        "name": "token1_address",
+        "description": "The token1 address",
+        "required": true,
+        "example": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+        "type": "string"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "to_block",
+        "description": "The block number to get the reserves from",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to_date",
+        "description": "Get the reserves up to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
+        "type": "string"
+      },
+      {
+        "name": "exchange",
+        "description": "The factory name or address of the token exchange",
+        "required": true,
+        "example": "uniswapv2",
+        "type": "string",
+        "enum": [
+          "uniswapv2",
+          "uniswapv3",
+          "sushiswapv2",
+          "pancakeswapv1",
+          "pancakeswapv2",
+          "quickswap"
+        ]
+      }
+    ],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns the pair address of the two tokens.",
+        "body": {
+          "type": "object",
+          "fields": [
+            { "name": "token0", "type": "json" },
+            { "name": "token1", "type": "json" },
+            {
+              "name": "pairAddress",
+              "type": "string",
+              "example": "0xbbb9bf440d0f686487925fef3b0a0f9aa67753f6"
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const chain = EvmChain.ETHEREUM;\n\n    const token0Address = '0x1234567890123456789012345678901234567890';\n\n    const token1Address = '0x1234567890123456789012345678901234567890';\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.defi.getPairAddress({\n        token0Address,\n        token1Address,\n        chain,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetPairAddress(IWeb3Api web3Api)\n{\n    bool result = true;\n     try\n    {\n        ReservesCollection balance = await web3Api.Defi.GetPairAddress(\"uniswapv2\", \"0x2b591e99afe9f32eaa6214f7b7629768c40eeb39\", \"0xdac17f958d2ee523a2206206994597c13d831ec7\", ChainList.eth);\n         result = balance is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"exchange\": \"uniswapv2\", \n    \"token0_address\": \"0x2b591e99afe9f32eaa6214f7b7629768c40eeb39\", \n    \"token1_address\": \"0xdac17f958d2ee523a2206206994597c13d831ec7\", \n    \"chain\": \"eth\", \n    \"to_block\": \"\", \n    \"to_date\": \"\", \n}\n\nresult = evm_api.defi.get_pair_address(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}

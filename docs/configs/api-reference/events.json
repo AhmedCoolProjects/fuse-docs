@@ -1,0 +1,477 @@
+{
+  "getContractLogs": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get logs by contract",
+    "description": "Get the logs for a contract.",
+    "method": "GET",
+    "path": "/:address/logs",
+    "pathParams": [
+      {
+        "name": "address",
+        "description": "The address of the contract",
+        "required": true,
+        "example": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+        "type": "string"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "block_number",
+        "description": "The block number\n* Provide the param 'block_numer' or ('from_block' and / or 'to_block')\n* If 'block_numer' is provided in combination with 'from_block' and / or 'to_block', 'block_number' will will be used\n",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "from_block",
+        "description": "The minimum block number from which to get the logs\n* Provide the param 'block_numer' or ('from_block' and / or 'to_block')\n* If 'block_numer' is provided in combination with 'from_block' and / or 'to_block', 'block_number' will will be used\n",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to_block",
+        "description": "The maximum block number from which to get the logs\n* Provide the param 'block_numer' or ('from_block' and / or 'to_block')\n* If 'block_numer' is provided in combination with 'from_block' and / or 'to_block', 'block_number' will will be used\n",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "from_date",
+        "description": "The start date from which to get the logs (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n* If 'from_date' and the block params are provided, the block params will be used. Please refer to the blocks params sections (block_number,from_block and to_block) on how to use them\n",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to_date",
+        "description": "Get the logs up to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n* If 'to_date' and the block params are provided, the block params will be used. Please refer to the blocks params sections (block_number,from_block and to_block) on how to use them\n",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "topic0",
+        "description": "topic0",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "topic1",
+        "description": "topic1",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "topic2",
+        "description": "topic2",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "topic3",
+        "description": "topic3",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "limit",
+        "description": "The desired page size of the result.",
+        "required": false,
+        "type": "number"
+      },
+      {
+        "name": "disable_total",
+        "description": "If the result should skip returning the total count (Improves performance).",
+        "required": false,
+        "type": "boolean"
+      },
+      {
+        "name": "cursor",
+        "description": "The cursor returned in the previous response (used for getting the next page). Learn more on cursor pagination [here](/web3-data-api/pagination).",
+        "type": "string"
+      }
+    ],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns the logs for an address",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "total",
+              "type": "number",
+              "description": "The total number of matches for this query",
+              "example": "100"
+            },
+            {
+              "name": "page",
+              "type": "number",
+              "description": "The current page of the result",
+              "example": "1"
+            },
+            {
+              "name": "page_size",
+              "type": "number",
+              "description": "The number of results per page",
+              "example": "100"
+            },
+            {
+              "name": "cursor",
+              "description": "The cursor returned in the previous response (used for getting the next page). Learn more on cursor pagination [here](/web3-data-api/pagination).",
+              "type": "string"
+            },
+            {
+              "name": "result",
+              "type": "object",
+              "fields": [
+                {
+                  "name": "transaction_hash",
+                  "type": "string",
+                  "description": "The transaction hash",
+                  "example": "0x2d30ca6f024dbc1307ac8a1a44ca27de6f797ec22ef20627a1307243b0ab7d09"
+                },
+                {
+                  "name": "address",
+                  "type": "string",
+                  "description": "The address of the contract",
+                  "example": "0x057Ec652A4F150f7FF94f089A38008f49a0DF88e"
+                },
+                {
+                  "name": "block_timestamp",
+                  "type": "string",
+                  "description": "The block timestamp",
+                  "example": "2021-04-02T10:07:54.000Z"
+                },
+                {
+                  "name": "block_number",
+                  "type": "string",
+                  "description": "The block number",
+                  "example": 12526958
+                },
+                {
+                  "name": "block_hash",
+                  "type": "string",
+                  "description": "The block hash",
+                  "example": "0x0372c302e3c52e8f2e15d155e2c545e6d802e479236564af052759253b20fd86"
+                },
+                {
+                  "name": "data",
+                  "type": "string",
+                  "description": "The data of the log",
+                  "example": "0x00000000000000000000000000000000000000000000000de05239bccd4d537400000000000000000000000000024dbc80a9f80e3d5fc0a0ee30e2693781a443"
+                },
+                {
+                  "name": "topic0",
+                  "type": "string",
+                  "example": "0x2caecd17d02f56fa897705dcc740da2d237c373f70686f4e0d9bd3bf0400ea7a"
+                },
+                {
+                  "name": "topic1",
+                  "type": "string",
+                  "example": "0x000000000000000000000000031002d15b0d0cd7c9129d6f644446368deae391"
+                },
+                {
+                  "name": "topic2",
+                  "type": "string",
+                  "example": "0x000000000000000000000000d25943be09f968ba740e0782a34e710100defae9"
+                },
+                { "name": "topic3", "type": "string", "example": null },
+                {
+                  "name": "transaction_index",
+                  "type": "number",
+                  "description": "The Transaction index of the log within the block",
+                  "example": 12
+                },
+                {
+                  "name": "log_index",
+                  "type": "number",
+                  "description": "The log index of the log within the block",
+                  "example": 15
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const address = '0x1234567890123456789012345678901234567890';\n\n    const chain = EvmChain.ETHEREUM;\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.events.getContractLogs({\n        address,\n        chain,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetLogsByAddress(IWeb3Api web3Api, string address)\n{\n    bool result = true;\n     try\n    {\n        LogEventByAddress logEvents = await web3Api.Native.GetLogsByAddress(address, ChainList.eth);\n         result = logEvents is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"address\": \"0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB\", \n    \"chain\": \"eth\", \n    \"block_number\": \"\", \n    \"from_block\": \"\", \n    \"to_block\": \"\", \n    \"from_date\": \"\", \n    \"to_date\": \"\", \n    \"topic0\": \"\", \n    \"topic1\": \"\", \n    \"topic2\": \"\", \n    \"topic3\": \"\", \n    \"limit\": 0, \n    \"disable_total\": True, \n    \"cursor\": \"\", \n}\n\nresult = evm_api.events.get_contract_logs(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "getContractEvents": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Get events by contract",
+    "description": "Get events for a contract ordered by block number in descending order. [Try it with Swagger](https://deep-index.moralis.io/api-docs-2.1/#/Events/getContractEvents).",
+    "method": "POST",
+    "path": "/:address/events",
+    "pathParams": [
+      {
+        "name": "address",
+        "description": "The address of the contract",
+        "required": true,
+        "type": "string",
+        "example": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "chain",
+        "description": "The chain to query",
+        "required": false,
+        "example": "eth",
+        "type": "string",
+        "enum": [
+          "eth",
+          "0x1",
+          "goerli",
+          "0x5",
+          "sepolia",
+          "0xaa36a7",
+          "polygon",
+          "0x89",
+          "mumbai",
+          "0x13881",
+          "bsc",
+          "0x38",
+          "bsc testnet",
+          "0x61",
+          "avalanche",
+          "0xa86a",
+          "avalanche testnet",
+          "0xa869",
+          "fantom",
+          "0xfa",
+          "palm",
+          "0x2a15c308d",
+          "cronos",
+          "0x19",
+          "cronos testnet",
+          "0x152",
+          "arbitrum",
+          "0xa4b1"
+        ]
+      },
+      {
+        "name": "from_block",
+        "description": "The minimum block number from which to get the logs\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
+        "required": false,
+        "type": "number"
+      },
+      {
+        "name": "to_block",
+        "description": "The maximum block number from which to get the logs.\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
+        "required": false,
+        "type": "number"
+      },
+      {
+        "name": "from_date",
+        "description": "The start date from which to get the logs (any format that is accepted by momentjs)\n* Provide the param 'from_block' or 'from_date'\n* If 'from_date' and 'from_block' are provided, 'from_block' will be used.\n",
+        "required": false,
+        "type": "string"
+      },
+      {
+        "name": "to_date",
+        "description": "Get the logs up to this date (any format that is accepted by momentjs)\n* Provide the param 'to_block' or 'to_date'\n* If 'to_date' and 'to_block' are provided, 'to_block' will be used.\n",
+        "type": "string"
+      },
+      {
+        "name": "topic",
+        "description": "The topic of the event",
+        "required": true,
+        "type": "string",
+        "example": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
+      },
+      {
+        "name": "offset",
+        "description": "offset",
+        "required": false,
+        "type": "number"
+      },
+      {
+        "name": "disable_total",
+        "description": "If the result should skip returning the total count (Improves performance).",
+        "required": false,
+        "type": "boolean"
+      },
+      {
+        "name": "limit",
+        "description": "The desired page size of the result.",
+        "required": false,
+        "type": "number"
+      }
+    ],
+    "bodyParam": {
+      "required": false,
+      "description": "ABI of the specific event",
+      "type": "json",
+      "example": {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "Transfer",
+        "type": "event"
+      }
+    },
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns a collection of events by topic",
+        "description": "Returns a collection of events by topic",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "total",
+              "type": "integer",
+              "description": "The total number of matches for this query",
+              "example": "2000"
+            },
+            {
+              "name": "page",
+              "type": "integer",
+              "description": "The current page of the result",
+              "example": "2"
+            },
+            {
+              "name": "page_size",
+              "type": "integer",
+              "description": "The number of results per page",
+              "example": "100"
+            },
+            {
+              "name": "result",
+              "type": "array",
+              "field": {
+                "type": "object",
+                "fields": [
+                  {
+                    "name": "transaction_hash",
+                    "type": "string",
+                    "description": "The transaction hash",
+                    "required": true,
+                    "example": "0x2d30ca6f024dbc1307ac8a1a44ca27de6f797ec22ef20627a1307243b0ab7d09"
+                  },
+                  {
+                    "name": "address",
+                    "type": "string",
+                    "required": true,
+                    "description": "The address of the contract",
+                    "example": "0x18F97EF6B2cbac5CA85b375b7093C4A207340d06"
+                  },
+                  {
+                    "name": "block_timestamp",
+                    "type": "string",
+                    "required": true,
+                    "description": "The block timestamp",
+                    "example": "2021-04-02T10:07:54.000Z"
+                  },
+                  {
+                    "name": "block_number",
+                    "type": "string",
+                    "required": true,
+                    "description": "The block number",
+                    "example": 12526958
+                  },
+                  {
+                    "name": "block_hash",
+                    "type": "string",
+                    "required": true,
+                    "description": "The block hash",
+                    "example": "0x0372c302e3c52e8f2e15d155e2c545e6d802e479236564af052759253b20fd86"
+                  },
+                  {
+                    "name": "data",
+                    "type": "json",
+                    "required": true,
+                    "description": "The content of the event"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\nimport { EvmChain } from '@moralisweb3/evm-utils';\n\ntry {\n    const abi = []; // Add ABI\n\n    const address = '0x1234567890123456789012345678901234567890';\n\n    const chain = EvmChain.ETHEREUM;\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.events.getContractEvents({\n        address,\n        chain,\n        abi,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> GetContractEvents(IWeb3Api web3Api)\n{\n    bool result = true;\n    try\n    {\n        // Function ABI input parameters\n        object[] inputParams = new object[3];\n        inputParams[0] = new { indexed = true, internalType = \"bytes32\", name = \"role\", type = \"bytes32\" };\n        inputParams[1] = new { indexed = true, internalType = \"address\", name = \"account\", type = \"address\" };\n        inputParams[2] = new { indexed = true, internalType = \"address\", name = \"sender\", type = \"address\" };\n        // Function ABI\n        object abi = new { anonymous = false, inputs = inputParams, name = \"RoleGranted\", type = \"event\" };\n        List<LogEvent> logEvents = await web3Api.Native.GetContractEvents(\"0x698d7D745B7F5d8EF4fdB59CeB660050b3599AC3\", \n            \"0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d\", \n            //\"bob\",\n            abi, ChainList.mumbai);\n        result = logEvents is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n    return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"address\": \"\", \n    \"topic\": \"\", \n    \"chain\": \"eth\", \n    \"from_block\": 0, \n    \"to_block\": 0, \n    \"from_date\": \"\", \n    \"to_date\": \"\", \n    \"offset\": 0, \n    \"limit\": 0, \n    \"disable_total\": True, \n}\nbody = \"\"\n\nresult = evm_api.events.get_contract_events(\n    api_key=api_key,\n    params=params,\n    body=body,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}

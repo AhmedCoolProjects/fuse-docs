@@ -1,0 +1,111 @@
+{
+  "resolveAddress": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Resolve ENS domain",
+    "description": "Reverse resolve a given ETH address to its ENS domain.",
+    "method": "GET",
+    "path": "/resolve/:address/reverse",
+    "pathParams": [
+      {
+        "name": "address",
+        "description": "The address to be resolved",
+        "required": true,
+        "example": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+        "type": "string"
+      }
+    ],
+    "queryParams": [],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns an ENS",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "name",
+              "type": "string",
+              "description": "Resolved ENS address",
+              "example": "Vitalik.eth"
+            }
+          ]
+        }
+      }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\n\ntry {\n    const address = '0x1234567890123456789012345678901234567890';\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.resolve.resolveAddress({\n        address,\n    });\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "\nprivate async Task<bool> ResolveAddress(IWeb3Api web3Api)\n{\n    bool result = true;\n     try\n    {\n        Ens resp = await web3Api.Resolve.ResolveAddress(\"0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045\");\n         result = resp is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n     return result;\n}\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"address\": \"0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045\", \n}\n\nresult = evm_api.resolve.resolve_address(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  },
+  "resolveDomain": {
+    "apiHost": "https://deep-index.moralis.io/api/v2",
+    "summary": "Resolve Unstoppable domain",
+    "description": "Resolve a specific Unstoppable domain to its address.",
+    "method": "GET",
+    "path": "/resolve/:domain",
+    "pathParams": [
+      {
+        "name": "domain",
+        "description": "The domain to be resolved",
+        "required": true,
+        "example": "brad.crypto",
+        "type": "string"
+      }
+    ],
+    "queryParams": [
+      {
+        "name": "currency",
+        "description": "The currency to query",
+        "required": false,
+        "example": "eth",
+        "type": "string"
+      }
+    ],
+    "responses": [
+      {
+        "status": "200",
+        "description": "Returns an address",
+        "body": {
+          "type": "object",
+          "fields": [
+            {
+              "name": "address",
+              "type": "string",
+              "description": "Resolved domain address",
+              "example": "0x057Ec652A4F150f7FF94f089A38008f49a0DF88e"
+            }
+          ]
+        }
+      },
+      { "status": "404", "description": "Returns an address" }
+    ],
+    "codeSamples": [
+      {
+        "language": "node",
+        "code": "import Moralis  from 'moralis';\n\ntry {\n    const domain = 'brad.crypto';\n\n    await Moralis.start({\n        apiKey: 'YOUR_API_KEY',\n        // ...and any other configuration\n    });\n\n    const response = await Moralis.EvmApi.resolve.resolveDomain({\n        domain,\n    });\n\n    console.log(response?.result);\n} catch (e) {\n    console.error(e);\n}\n        ",
+        "name": "Moralis NodeJS SDK"
+      },
+      {
+        "language": "csharp",
+        "code": "private async Task<bool> ResolveDomain(IWeb3Api web3Api)\n{\n    bool result = true;\n    try\n    {\n        Resolve resp = await web3Api.Resolve.ResolveDomain(WebUtility.UrlEncode (\"brad.crypto\") );\n        result = resp is { };\n    }\n    catch (Exception exp)\n    {\n        result = false;\n    }\n    return result;\n}\n\n        ",
+        "name": "Moralis C# SDK"
+      },
+      {
+        "language": "python",
+        "code": "from moralis import evm_api\n\napi_key = \"YOUR_API_KEY\"\nparams = {\n    \"domain\": \"brad.crypto\", \n    \"currency\": \"eth\", \n}\n\nresult = evm_api.resolve.resolve_domain(\n    api_key=api_key,\n    params=params,\n)\n\nprint(result)\n"
+      }
+    ]
+  }
+}
