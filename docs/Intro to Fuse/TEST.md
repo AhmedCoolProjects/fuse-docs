@@ -3,13 +3,9 @@ title: TEST 01
 sidebar_position: 20
 ---
 
-
-
-
-import ApiReference from "@site/src/components/ApiReference";
+import APIComponent from "@site/src/components/APIComponent";
 import config from "../configs/api-reference/configs.json";
-
 
 # Get Multiple NFTs
 
-<ApiReference {...config.nft.getMultipleNFTs} />
+<APIComponent {...config.nft.getMultipleNFTs} />

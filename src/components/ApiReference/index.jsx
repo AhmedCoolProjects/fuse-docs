@@ -1,14 +1,7 @@
 import React, { useState, useCallback, useMemo, useContext } from "react";
-import ReactMarkdown from "react-markdown";
 import { Formik, Form } from "formik";
-
 import qs from "qs";
 import styles from "./styles.module.css";
-import ApiResponseField, { buildResponse } from "./ApiResponseField";
-import ApiParamField, { apiParamInitialValue } from "./ApiParamField";
-import ApiParamButton from "./ApiParamButton";
-import ApiExamples, { stringifyJSON, filterOutEmpty } from "./ApiExamples";
-import { ApiReferenceTokenContext } from "./ApiReferenceToken";
 import {
   InputKey,
   LanguagesTabs,
@@ -20,6 +13,8 @@ import {
   QueryParams,
   ResponseParams,
 } from "../APIComponent/APILeftPart";
+import { apiParamInitialValue } from "../APIComponent/APILeftPart/fields";
+import { ApiReferenceTokenContext } from "../APIComponent/context/ReferenceToken";
 
 const deepCompact = (value) => {
   if (Array.isArray(value)) {
@@ -144,7 +139,6 @@ const ApiReference = ({
               apiHost={apiHost}
               path={path}
             />
-
             {/* TODO: not used */}
             {/* {pathParams && pathParams.length > 0 && (
                 <div className={styles.section}>
@@ -167,40 +161,10 @@ const ApiReference = ({
                 prefix="query"
               />
             )}
-
             {/* Body Params */}
-            <BodyParams />
-            {/* {bodyParam && (
-                <div className={styles.section}>
-                  <div className={styles.sectionTitle}>BODY PARAM</div>
-
-                  <div className={styles.group}>
-                    <ApiParamField param={bodyParam} prefix="body" />
-                  </div>
-                </div>
-              )} */}
-
-            {/* reponses args */}
-            <ResponseParams />
-            {/* <div className={styles.section}>
-                <div className={styles.sectionTitle}>Responses</div>
-
-                {responses &&
-                  responses?.map((response, index) => (
-                    <div key={index} className={styles.section}>
-                      <div className={styles.group}>
-                        <ApiResponseField
-                          collapsible
-                          field={{
-                            type: "object",
-                            name: `${response.status} ${response.description}`,
-                            ...response.body,
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-              </div> */}
+            {bodyParam && <BodyParams bodyParam={bodyParam} />}
+            {/* response args */}
+            <ResponseParams response={response} responses={responses} />
             <div className={styles.section}>{children}</div>
           </div>
 
