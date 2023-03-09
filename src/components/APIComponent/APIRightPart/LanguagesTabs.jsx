@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { useFormikContext } from "formik";
 import mapValues from "lodash/mapValues";
 import omitBy from "lodash/omitBy";
@@ -8,7 +8,7 @@ import { Path } from "path-parser";
 import CodeBlock from "@theme/CodeBlock";
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
-import { ApiReferenceTokenContext } from "./ApiReferenceToken";
+import { ApiReferenceTokenContext } from "../context/ReferenceToken";
 
 const INDENT_LENGTH = 2;
 const STORAGE_EXAMPLE_TAB_KEY = "API_REFERENCE_EXAMPLE_TAB";
@@ -23,6 +23,29 @@ const line = (str, indent = 0) => `${" ".repeat(indent * INDENT_LENGTH)}${str}`;
 
 export const stringifyJSON = (obj, pretty = false) =>
   JSON.stringify(obj, null, pretty ? INDENT_LENGTH : undefined);
+
+export const filterOutEmpty = (value) => {
+  if (value?.message)
+    value = { ...value, message: value.message.replaceAll("\\n", "\n") };
+
+  if (Array.isArray(value)) {
+    const cleanArray = value
+      .map((item) => filterOutEmpty(item))
+      .filter((item) => item != null);
+    return cleanArray.length === 0 ? undefined : cleanArray;
+  }
+
+  if (isPlainObject(value)) {
+    const cleanObject = Object.entries(value)?.reduce((obj, [key, value]) => {
+      const cleanValue = filterOutEmpty(value);
+      return cleanValue == null ? obj : { ...obj, [key]: cleanValue };
+    }, {});
+
+    return Object.keys(cleanObject).length === 0 ? undefined : cleanObject;
+  }
+
+  return value;
+};
 
 const tabs = [
   {
@@ -196,31 +219,7 @@ const tabs = [
   },
 ];
 
-// Used to filter out the fields that are empty in the example body JSON
-export const filterOutEmpty = (value) => {
-  if (value?.message)
-    value = { ...value, message: value.message.replaceAll("\\n", "\n") };
-
-  if (Array.isArray(value)) {
-    const cleanArray = value
-      .map((item) => filterOutEmpty(item))
-      .filter((item) => item != null);
-    return cleanArray.length === 0 ? undefined : cleanArray;
-  }
-
-  if (isPlainObject(value)) {
-    const cleanObject = Object.entries(value)?.reduce((obj, [key, value]) => {
-      const cleanValue = filterOutEmpty(value);
-      return cleanValue == null ? obj : { ...obj, [key]: cleanValue };
-    }, {});
-
-    return Object.keys(cleanObject).length === 0 ? undefined : cleanObject;
-  }
-
-  return value;
-};
-
-const ApiExamples = ({ method, apiHost, path, codeSamples }) => {
+export function LanguagesTabs({ method, apiHost, path, codeSamples }) {
   const { values } = useFormikContext();
   const { token } = useContext(ApiReferenceTokenContext);
 
@@ -228,7 +227,6 @@ const ApiExamples = ({ method, apiHost, path, codeSamples }) => {
     () => mapValues(values.path, (value, key) => `:${key}`),
     []
   );
-
   return (
     <Tabs groupId={STORAGE_EXAMPLE_TAB_KEY}>
       {tabs.map(({ lang, langCode, template, title }, index) => {
@@ -261,6 +259,4 @@ const ApiExamples = ({ method, apiHost, path, codeSamples }) => {
       })}
     </Tabs>
   );
-};
-
-export default ApiExamples;
+}
