@@ -23,7 +23,13 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
         },
-        blog: false,
+        blog:  {
+          showReadingTime: true,
+
+          // blogTitle: "Changelog",
+          // blogSidebarTitle: "Recent Changes",
+          // postsPerPage: "ALL"
+        },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
@@ -31,6 +37,14 @@ const config = {
     ],
   ],
   plugins: [
+  //  [ 
+  //   '@docusaurus/plugin-content-blog',
+  //   {
+  //     id: "blog",
+  //     path: "blog",
+  //     routeBasePath: "blog" 
+  //      },
+  // ],
     [
       "@docusaurus/plugin-content-docs",
       {
